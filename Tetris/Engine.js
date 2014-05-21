@@ -34,7 +34,7 @@ function moveBlock()
   else {
     if(boolgame == true) {
      tet.setState(false);
-     fillArray();
+      fillArray();
       checkRows();
       newTet();
     }
@@ -48,7 +48,7 @@ function moveBlock()
 function checkRows()
 {
   var rowComplete = true;
-  for(var x = 0; x < 20; ++x) {
+  for(var x = 19; x >= 0; --x) {
     rowComplete = true;
     for(var y = 0; y < 10; ++y) {
       if(field.fieldArray[x][y] == 0) {
@@ -67,17 +67,21 @@ function removeRow(row)
   for(var x=0; x<10; ++x) {
     //field.fieldArray[row][x] = 0;
     // hier scene.remove() aufrufen
+    scene.remove(field.fieldArray[row][x]);
   }
   
   for(var x = row; x < 20; ++x) { // alle Zeilen über row 1 runterschieben
     for(var y = 0; y < 10; ++y) { // Zeile durchgehen
       if(x < 19) {
-        //field.fieldArray[x][y] = field.fieldArray[x+1][y];
+        field.fieldArray[x][y] = field.fieldArray[x+1][y];
         // hier die Koordinaten der Blöcke ändern
+        if(field.fieldArray[x][y] != 0) {
+          field.fieldArray[x][y].position.y-=1;
+        }
       }    
       else {
-        //field.fieldArray[x][y] = 0;
-        //hier oberste Zeile clearen/auf 0 setzen (müsste so schon passen)
+        field.fieldArray[x][y] = 0;
+        // hier oberste Zeile clearen/auf 0 setzen
       }
     }
   }
@@ -88,10 +92,10 @@ function fillArray(){
 	
 
 	
-	field.fieldArray[tet.shape.getBlock1().position.y+10][tet.shape.getBlock1().position.x]=1;
-	field.fieldArray[tet.shape.getBlock2().position.y+10][tet.shape.getBlock2().position.x]=1;
-	field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x]=1;
-	field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x]=1;
+	field.fieldArray[tet.shape.getBlock1().position.y+10][tet.shape.getBlock1().position.x]=tet.shape.getBlock1();
+	field.fieldArray[tet.shape.getBlock2().position.y+10][tet.shape.getBlock2().position.x]=tet.shape.getBlock2();
+	field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x]=tet.shape.getBlock3();
+	field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x]=tet.shape.getBlock4();
 	
 	/*
 	for(var x = 19; x >= 0; --x) 

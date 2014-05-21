@@ -34,7 +34,7 @@ function moveBlock()
   }
   else {
     if(boolgame == true) {
-      //aufruf zeilen loeschen
+      checkRows();
       newTet();
     }
     else {

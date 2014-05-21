@@ -26,7 +26,7 @@ function Field(x , y) {
   scene.add(gridsystem);
   
   
-  var fieldArray[10][20];
+  var fieldArray[20][10];
   
   for(var x = 0; x < 10; x ++) {
 	    for(var y = 0; y < 20; y ++)

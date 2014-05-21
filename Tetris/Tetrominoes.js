@@ -1,17 +1,78 @@
-
-
-var ShapeEnum = {
-    SShape:0,
-    ZShape:1,
-    TShape:2,
-    LShape:3,
-    LineShape:4,
-    MirroredLShape:5,
-    SquareShape:6
-};
-
 var Shape = function()
 {
+	
+	this.getMaxX = function()
+	{
+		var max = this.getBlock1().position.x;
+		if(this.getBlock2().position.x > max)
+			{
+			max = this.getBlock2.position.x;
+			}
+		if(this.getBlock3().position.x > max)
+			{
+			max = this.getBlock3().position.x;
+			}
+		if(this.getBlock4().position.x > max)
+		{
+		max = this.getBlock4().position.x;
+		}
+		return max;
+	};
+	
+	this.getMaxY = function()
+	{
+		var max = this.getBlock1().position.y;
+		if(this.getBlock2().position.y > max)
+			{
+			max = this.getBlock2.position.y;
+			}
+		if(this.getBlock3().position.y > max)
+			{
+			max = this.getBlock3().position.y;
+			}
+		if(this.getBlock4().position.y > max)
+		{
+		max = this.getBlock4().position.y;
+		}
+		return max;
+	};
+	
+	
+	this.getMinX = function()
+	{
+		var min = this.getBlock1().position.x;
+		if(this.getBlock2().position.x < min)
+			{
+			min = this.getBlock2.position.x;
+			}
+		if(this.getBlock3().position.x < min)
+			{
+			min = this.getBlock3().position.x;
+			}
+		if(this.getBlock4().position.x < min)
+		{
+			min = this.getBlock4().position.x;
+		}
+		return min;
+	};
+	
+	this.getMinY = function()
+	{
+		var min = this.getBlock1().position.y;
+		if(this.getBlock2().position.y < min)
+			{
+			min = this.getBlock2.position.y;
+			}
+		if(this.getBlock3().position.y < min)
+			{
+			min = this.getBlock3().position.y;
+			}
+		if(this.getBlock4().position.y < min)
+		{
+			min = this.getBlock4().position.y;
+		}
+		return min;
+	};
 	
 	this.ColorArray = [
 	0xf0fff0,

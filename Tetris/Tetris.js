@@ -2,7 +2,7 @@ var scene;
 var camera;
 var renderer;
 var cube;
-var OffsetX  = 0;
+var OffsetX = 0;
 var OffsetY = -10;
 
 var field;

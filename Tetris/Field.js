@@ -24,4 +24,14 @@ function Field(x , y) {
   gridsystem.position.x += OffsetX-0.5;
   gridsystem.position.y += OffsetY-0.5;
   scene.add(gridsystem);
+  
+  
+  var fieldArray[10][20];
+  
+  for(var x = 0; x < 10; x ++) {
+	    for(var y = 0; y < 20; y ++)
+	    	fieldArray[x][y] = 0;
+	}
+  
+  
 }

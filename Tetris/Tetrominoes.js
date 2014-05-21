@@ -223,40 +223,6 @@ function CreateGeometry()
 
 
 
-function setShape()
-{
-  var shape;
-  var number= Math.floor((Math.random()*7));
-
-  switch(number)
-  {
-    case 0: 
-      shape = CreateSShape();
-      break;
-    case 1:
-      shape = CreateZShape();
-      break;
-    case 2:
-      shape = CreateTShape();
-      break;
-    case 3:
-      shape = CreateLShape();
-      break;
-    case 4: 
-      shape = CreateLineShape();
-      break;
-    case 5:
-      shape = CreateMirroredLShape();
-      break;
-    case 6:
-      shape = CreateSquareShape();
-      break;
-  }
-  
-  return shape;
-}
-
-
 var Tetrominoes = function()
 {
   this.state = true;
@@ -280,7 +246,17 @@ var Tetrominoes = function()
   };
 
   this.changeY = function(y) {
-    this.shape.setY(y);
+	  if(field.fieldArray[10+this.shape.getBlock1().position.y-1][this.shape.getBlock1().position.x] == 0 &&
+		 field.fieldArray[10+this.shape.getBlock2().position.y-1][this.shape.getBlock2().position.x] == 0 &&
+		 field.fieldArray[10+this.shape.getBlock3().position.y-1][this.shape.getBlock3().position.x] == 0 &&
+		 field.fieldArray[10+this.shape.getBlock4().position.y-1][this.shape.getBlock4().position.x] == 0)
+		  {
+		  this.shape.setY(y);
+		  }
+	  else
+		  {
+		  this.setState(false);
+		  }
 
   };
 

@@ -27,7 +27,7 @@ document.onkeydown = function( evt)
 
 function moveBlock()
 {
-  if(tet.Y > 0.5 + OffsetY) {
+  if(tet.shape.getBlock1().position.y > 0.5 + OffsetY) {
     tet.changeY(-1);
     setTimeout("moveBlock()", 1000);
   }

@@ -13,7 +13,7 @@ var ShapeEnum = {
 var Shape = function()
 {
 	
-	
+
 	
 	this.ShapeArray = [
 	                   [0, 0],
@@ -28,7 +28,7 @@ var Shape = function()
 	var block2 = new THREE.Mesh(CreateGeometry(),material);
 	var block3 = new THREE.Mesh(CreateGeometry(),material);
 	var block4 = new THREE.Mesh(CreateGeometry(),material);
-	
+
 	
 	  this.setShape = function() {
 		  var number= Math.floor((Math.random()*7));
@@ -44,20 +44,44 @@ var Shape = function()
 	
 		  
 		this.setX = function(x){
-			this.block1.position.x += x;
-			this.block2.position.x += x;
-			this.block3.position.x += x;
-			this.block4.position.x += x;
+			block1.position.x += x;
+			block2.position.x += x;
+			block3.position.x += x;
+			block4.position.x += x;
 			
 		};
 		
 		this.setY = function(y){
-			this.block1.position.y += y;
-			this.block2.position.y += y;
-			this.block3.position.y += y;
-			this.block4.position.y += y;
+			block1.position.y += y;
+			block2.position.y += y;
+			block3.position.y += y;
+			block4.position.y += y;
 			
 		};
+		
+		this.getBlock1 = function()
+		{
+			return block1;
+		};
+		this.getBlock2 = function()
+		{
+			return block2;
+		};
+		
+		this.getBlock3 = function()
+		{
+			return block3;
+		};
+		
+		this.getBlock4 = function()
+		{
+			return block4;
+		};
+		
+		scene.add(block1);
+		scene.add(block2);
+		scene.add(block3);
+		scene.add(block4);
 	return this;
 };
 
@@ -361,6 +385,10 @@ var Tetrominoes = function()
   this.rotate = function() {
     this.shape.rotation.z += 90*Math.PI/180;
   };
+  
+  
+  this.changeX(5);
+  this.changeY(5);
   
   return this;
 };

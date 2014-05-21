@@ -1,18 +1,19 @@
-var Field = function(x , y) {
+var Field = function(spalten , zeilen) {
+
 
   var grid = new THREE.Geometry();
 
   var i = 0;
   var j = 0;
 
-  for (i; i <= y; i++) {
+  for (i; i <= zeilen; i++) {
 	grid.vertices.push(new THREE.Vector3(0, i, 0));
-	grid.vertices.push(new THREE.Vector3(x, i, 0));
+	grid.vertices.push(new THREE.Vector3(spalten, i, 0));
   }
 
-  for (var j; j <= x; j++) {
+  for (var j; j <= spalten; j++) {
     grid.vertices.push(new THREE.Vector3(j, 0, 0));
-    grid.vertices.push(new THREE.Vector3(j, y, 0));
+    grid.vertices.push(new THREE.Vector3(j, zeilen, 0));
   }
 
   var gridline = new THREE.LineBasicMaterial({
@@ -27,9 +28,9 @@ var Field = function(x , y) {
   
   var fieldArray = new Array(20);
   
-  for(var x = 0; x < 20; x ++) {
+  for(var x = 0; x < zeilen; ++x) {
     fieldArray[x] = new Array(10);
-    for(var y = 0; y < 10; y ++) {
+    for(var y = 0; y < spalten; ++y) {
       fieldArray[x][y] = 0;
     }
   }

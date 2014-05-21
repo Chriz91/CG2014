@@ -30,7 +30,6 @@ function moveBlock()
   if(tet.Y > 0.5 + OffsetY) {
     tet.changeY(-1);
     setTimeout("moveBlock()", 1000);
-    update;
   }
   else {
     if(boolgame == true) {
@@ -57,12 +56,12 @@ function checkRows()
     }
     if(rowComplete) {
       // zeile x entfernen
+      // removeRow(x);
     }
-  }
-  
+  } 
 }
 
 function removeRow(row)
 {
-
+  
 }

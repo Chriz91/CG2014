@@ -13,6 +13,5 @@ function game()
 function newTet()
 {
   tet = new Tetrominoes();
-  scene.add(tet.shape);
   moveBlock();
 }

@@ -44,10 +44,10 @@ var Shape = function()
 	
 		  
 		this.setX = function(x){
-			block1.position.x += x;
-			block2.position.x += x;
-			block3.position.x += x;
-			block4.position.x += x;
+			this.getBlock1().position.x += x;
+			this.getBlock2().position.x += x;
+			this.getBlock3().position.x += x;
+			this.getBlock4().position.x += x;
 			
 		};
 		

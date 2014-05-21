@@ -34,6 +34,7 @@ function moveBlock()
   else {
     if(boolgame == true) {
      tet.setState(false);
+     fillArray();
       checkRows();
       newTet();
     }
@@ -82,3 +83,21 @@ function removeRow(row)
   }
 }
 
+
+function fillArray(){
+	
+
+	
+	field.fieldArray[tet.shape.getBlock1().position.y+10][tet.shape.getBlock1().position.x]=1;
+	field.fieldArray[tet.shape.getBlock2().position.y+10][tet.shape.getBlock2().position.x]=1;
+	field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x]=1;
+	field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x]=1;
+	
+	/*
+	for(var x = 19; x >= 0; --x) 
+	{ var line = (x<10?" ":"") + x + "| "; 
+	for(var y = 0; y < 10; ++y) { line += field.fieldArray[x][y] + " "; } 
+	console.log(line); } */
+	 
+	 
+}

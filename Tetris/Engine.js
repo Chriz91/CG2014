@@ -55,13 +55,29 @@ function checkRows()
       }
     }
     if(rowComplete) {
-      // zeile x entfernen
-      // removeRow(x);
+      removeRow(x);
     }
   } 
 }
 
 function removeRow(row)
 {
+  for(var x=0; x<10; ++x) {
+    //field.fieldArray[row][x] = 0;
+    // hier scene.remove() aufrufen
+  }
   
+  for(var x = row; x < 20; ++x) { // alle Zeilen über row 1 runterschieben
+    for(var y = 0; y < 10; ++y) { // Zeile durchgehen
+      if(x < 19) {
+        //field.fieldArray[x][y] = field.fieldArray[x+1][y];
+        // hier die Koordinaten der Blöcke ändern
+      }    
+      else {
+        //field.fieldArray[x][y] = 0;
+        //hier oberste Zeile clearen/auf 0 setzen (müsste so schon passen)
+      }
+    }
+  }
 }
+

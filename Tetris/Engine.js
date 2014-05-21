@@ -46,6 +46,16 @@ function moveBlock()
 
 function checkRows()
 {
-
-
+  for(var x = 0; x < 20; x ++) {
+    var rowComplete = true;
+    for(var y = 0; y < 10; y ++) {
+      if(field.fieldArray[x][y] == 0) {
+        rowComplete = false;
+        break;
+      }
+    }
+    if(rowComplete) {
+      // zeile x entfernen
+    }
+  }
 }

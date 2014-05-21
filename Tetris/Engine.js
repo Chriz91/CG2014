@@ -4,7 +4,7 @@ document.onkeydown = function( evt)
   switch (evt.keyCode)
   {
     case 37: // links
-      if(tet.shape.getBlock1().position.x >= 0.5 && tet.shape.getBlock2().position.x >= 0.5 &&tet.shape.getBlock3().position.x >= 0.5 &&tet.shape.getBlock4().position.x >= 0.5) {
+      if(tet.shape.getMinX() >= 0.5) {
         tet.changeX(-1);
       }
       break;
@@ -12,12 +12,12 @@ document.onkeydown = function( evt)
       tet.rotate();
       break;
     case 39: // rechts
-      if(tet.shape.getBlock1().position.x <= 8.5 && tet.shape.getBlock2().position.x <= 8.5 && tet.shape.getBlock3().position.x <= 8.5 && tet.shape.getBlock4().position.x <= 8.5) {
+      if(tet.shape.getMaxX() <= 8.5) {
         tet.changeX(1);
       }
       break ;
     case 40: // unten
-      if(tet.shape.getBlock1().position.y >= 0.5 + OffsetY && tet.shape.getBlock2().position.y >= 0.5 + OffsetY && tet.shape.getBlock3().position.y >= 0.5 + OffsetY &&tet.shape.getBlock4().position.y >= 0.5 + OffsetY) {
+      if(tet.shape.getMinY() >= 0.5 + OffsetY) {
         tet.changeY(-1);
       }
       break;
@@ -27,7 +27,7 @@ document.onkeydown = function( evt)
 
 function moveBlock()
 {
-  if(tet.shape.getBlock1().position.y > 0.5 + OffsetY && tet.shape.getBlock2().position.y > 0.5 + OffsetY && tet.shape.getBlock3().position.y > 0.5 + OffsetY && tet.shape.getBlock4().position.y > 0.5 + OffsetY && tet.getState()==true) {
+  if(tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
     tet.changeY(-1);
     setTimeout("moveBlock()", 1000);
   }

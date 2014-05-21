@@ -210,7 +210,7 @@ var Tetrominoes = function()
   
   this.getState = function()
   {
-	  return state;
+	  return this.state;
   }
 
   this.changeX = function(x) {

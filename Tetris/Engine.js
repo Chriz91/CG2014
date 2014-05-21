@@ -27,12 +27,13 @@ document.onkeydown = function( evt)
 
 function moveBlock()
 {
-  if(tet.shape.getBlock1().position.y > 0.5 + OffsetY && tet.shape.getBlock2().position.y > 0.5 + OffsetY && tet.shape.getBlock3().position.y > 0.5 + OffsetY && tet.shape.getBlock4().position.y > 0.5 + OffsetY) {
+  if(tet.shape.getBlock1().position.y > 0.5 + OffsetY && tet.shape.getBlock2().position.y > 0.5 + OffsetY && tet.shape.getBlock3().position.y > 0.5 + OffsetY && tet.shape.getBlock4().position.y > 0.5 + OffsetY && tet.getState()==true) {
     tet.changeY(-1);
     setTimeout("moveBlock()", 1000);
   }
   else {
     if(boolgame == true) {
+     tet.setState(false);
       checkRows();
       newTet();
     }

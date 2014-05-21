@@ -10,8 +10,60 @@ var ShapeEnum = {
     SquareShape:6
 };
 
+var Shape = function()
+{
+	
+	
+	
+	this.ShapeArray = [
+	                   [0, 0],
+	                   [0, 1],
+	                   [0, 2],
+	                   [0, 3],
+	                   ];
+	
+	var material = new THREE.MeshBasicMaterial( {color: 0xf0fff0, side: THREE.DoubleSide} ); 
+
+	var block1 = new THREE.Mesh(CreateGeometry(),material);
+	var block2 = new THREE.Mesh(CreateGeometry(),material);
+	var block3 = new THREE.Mesh(CreateGeometry(),material);
+	var block4 = new THREE.Mesh(CreateGeometry(),material);
+	
+	
+	  this.setShape = function() {
+		  var number= Math.floor((Math.random()*7));
+		  block1.position.x = this.ShapeArray[0][0];
+		  block1.position.y = this.ShapeArray[0][1];
+		  block2.position.x = this.ShapeArray[1][0];
+		  block2.position.y = this.ShapeArray[1][1];
+		  block3.position.x = this.ShapeArray[2][0];
+		  block3.position.y = this.ShapeArray[2][1];
+		  block4.position.x = this.ShapeArray[3][0];
+		  block4.position.y = this.ShapeArray[3][1];
+		  };
+	
+		  
+		this.setX = function(x){
+			this.block1.position.x += x;
+			this.block2.position.x += x;
+			this.block3.position.x += x;
+			this.block4.position.x += x;
+			
+		};
+		
+		this.setY = function(y){
+			this.block1.position.y += y;
+			this.block2.position.y += y;
+			this.block3.position.y += y;
+			this.block4.position.y += y;
+			
+		};
+	return this;
+};
+
 function CreateMirroredLShape()
 {
+	
   var plane = CreateGeometry();
   var plane1 = CreateGeometry();
   var plane2 = CreateGeometry();
@@ -290,19 +342,20 @@ function setShape()
 var Tetrominoes = function()
 {
   this.state = true;
-  this.shape = setShape();
+  
+  this.shape = new Shape();
+  this.shape.setShape();
 
-  this.X = this.shape.position.x;
-  this.Y = this.shape.position.y;
+
 
   this.changeX = function(x) {
-	this.shape.position.x += x;
-    this.X += x;
+	this.shape.setX(x);
+
   };
 
   this.changeY = function(y) {
-    this.shape.position.y += y;
-    this.Y += y;
+    this.shape.setY(y);
+
   };
 
   this.rotate = function() {
@@ -313,7 +366,3 @@ var Tetrominoes = function()
 };
 
 
-var test = {
-    text: 'Hallo',
-	variable: '1'
-};

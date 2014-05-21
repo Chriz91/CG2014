@@ -26,12 +26,12 @@ var Field = function(spalten , zeilen) {
   gridsystem.position.y += OffsetY-0.5;
   scene.add(gridsystem);
   
-  var fieldArray = new Array(20);
+  this.fieldArray = new Array(20);
   
   for(var x = 0; x < zeilen; ++x) {
-    fieldArray[x] = new Array(10);
+    this.fieldArray[x] = new Array(10);
     for(var y = 0; y < spalten; ++y) {
-      fieldArray[x][y] = 0;
+      this.fieldArray[x][y] = 0;
     }
   }
   return this;

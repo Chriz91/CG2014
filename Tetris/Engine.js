@@ -35,7 +35,6 @@ function moveBlock()
   else {
     if(boolgame == true) {
       checkRows();
-      alert("success");
       newTet();
     }
     else {
@@ -52,10 +51,10 @@ function checkRows()
     rowComplete = true;
     for(var y = 0; y < 10; ++y) {
       console.log("x"+x+"y"+y);
-      /*if(field.fieldArray[x][y] == 0) {
+      if(field.fieldArray[x][y] == 0) {
         rowComplete = false;
         break;
-      }*/
+      }
     }
     if(rowComplete) {
       // zeile x entfernen

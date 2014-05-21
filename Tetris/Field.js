@@ -1,4 +1,4 @@
-function Field(x , y) {
+var Field = function(x , y) {
 
   var grid = new THREE.Geometry();
 
@@ -33,4 +33,5 @@ function Field(x , y) {
       fieldArray[x][y] = 0;
     }
   }
-}
+  return this;
+};

@@ -217,7 +217,7 @@ var Shape = function()
 
 function CreateGeometry()
 {
-  var geometry = new THREE.PlaneGeometry(1, 1); 
+  var geometry = new THREE.CubeGeometry(1, 1, 1); 
   return geometry;
 }
 

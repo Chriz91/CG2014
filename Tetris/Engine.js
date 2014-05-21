@@ -3,34 +3,22 @@ document.onkeydown = function( evt)
   evt = evt || window.event;
   switch (evt.keyCode)
   {
-    case 37: 
-      if(tet.X < 0.5) {
-        
-      }
-      else {
+    case 37: // links
+      if(tet.X >= 0.5) {
         tet.changeX(-1);
-        break;
       }
-    case 38:
+      break;
+    case 38: // oben
       tet.rotate();
       break;
-    case 39:
-    case 37: 
-      if(tet.X > 7.5) {
-        
-      }
-      else {
-		tet.changeX(1);
-		break;
+    case 39: // rechts
+      if(tet.X <= 7.5) {
+        tet.changeX(1);
       }
       break ;
-    case 40: 
-      if(tet.Y < 0.5 + OffsetY) {
-      
-      }
-      else {
+    case 40: // unten
+      if(tet.Y >= 0.5 + OffsetY) {
         tet.changeY(-1);
-        break;
       }
       break;
   }
@@ -46,10 +34,18 @@ function moveBlock()
   }
   else {
     if(boolgame == true) {
+      //aufruf zeilen loeschen
       newTet();
     }
     else {
       alert("Spiel zuende");
     }
   }
+}
+
+
+function checkRows()
+{
+
+
 }

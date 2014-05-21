@@ -6,7 +6,7 @@ var Shape = function()
 		var max = this.getBlock1().position.x;
 		if(this.getBlock2().position.x > max)
 			{
-			max = this.getBlock2.position.x;
+			max = this.getBlock2().position.x;
 			}
 		if(this.getBlock3().position.x > max)
 			{
@@ -24,7 +24,7 @@ var Shape = function()
 		var max = this.getBlock1().position.y;
 		if(this.getBlock2().position.y > max)
 			{
-			max = this.getBlock2.position.y;
+			max = this.getBlock2().position.y;
 			}
 		if(this.getBlock3().position.y > max)
 			{
@@ -43,7 +43,7 @@ var Shape = function()
 		var min = this.getBlock1().position.x;
 		if(this.getBlock2().position.x < min)
 			{
-			min = this.getBlock2.position.x;
+			min = this.getBlock2().position.x;
 			}
 		if(this.getBlock3().position.x < min)
 			{
@@ -61,7 +61,7 @@ var Shape = function()
 		var min = this.getBlock1().position.y;
 		if(this.getBlock2().position.y < min)
 			{
-			min = this.getBlock2.position.y;
+			min = this.getBlock2().position.y;
 			}
 		if(this.getBlock3().position.y < min)
 			{
@@ -290,7 +290,7 @@ var Tetrominoes = function()
   
   
   this.changeX(5);
-  this.changeY(5);
+  this.changeY(10-this.shape.getMaxY());
   
   return this;
 };

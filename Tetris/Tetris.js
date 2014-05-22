@@ -10,7 +10,6 @@ var field;
 
 function update()
 {
-  requestAnimationFrame(update)
   render();
 }
 

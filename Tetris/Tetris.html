@@ -12,6 +12,25 @@
 		<script src="Game.js" type="text/javascript"></script>
 	</head>
 	<body onload="init()">
-
+	
+	<div style="background-color:#FFFFE0;">
+		<h1 style="color:blue" >Tetris</h1>
+		<hr />
+		<table cols="3">
+			
+			
+			<tr>
+				<td style="color:blue"  colspan="3"><p>Level</p><input type="text" id="level" value="0" onchange="updateLevel()" /></td>
+				</tr>
+				<tr>
+				<td style="color:blue"  colspan="3"><p>Punkte</p><input type="text" id="punkte" value="0" onchange="updatePunkte()" /></td>
+				</tr>
+				<tr>
+				<td style="color:blue"  colspan="3"><p>Linien</p><input type="text" id="linien" value="0" onchange="updateLinien()" /></td>
+			</tr>
+		</table>
+		<hr />
+		</div>
+		
 	</body>
 </html>

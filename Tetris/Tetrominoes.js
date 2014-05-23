@@ -155,6 +155,8 @@ var Shape = function()
 	var block2 = new THREE.Mesh(CreateGeometry(),material);
 	var block3 = new THREE.Mesh(CreateGeometry(),material);
 	var block4 = new THREE.Mesh(CreateGeometry(),material);
+	
+
 
 	
 
@@ -205,11 +207,14 @@ var Shape = function()
 		{
 			return block4;
 		};
+	
 		
 		scene.add(block1);
 		scene.add(block2);
 		scene.add(block3);
 		scene.add(block4);
+		
+
 	return this;
 };
 
@@ -217,7 +222,7 @@ var Shape = function()
 
 function CreateGeometry()
 {
-  var geometry = new THREE.CubeGeometry(1, 1, 1); 
+  var geometry = new THREE.PlaneGeometry(1, 1, 1); 
   return geometry;
 }
 
@@ -229,7 +234,11 @@ var Tetrominoes = function()
   
   this.shape = new Shape();
   this.shape.setShape();
+  
+	this.shape.setX(5);
+	this.shape.setY(10-this.shape.getMaxY());
 
+  
   this.setState = function(bool)
   {
 	  this.state=bool;
@@ -242,7 +251,7 @@ var Tetrominoes = function()
 
   this.changeX = function(x) {
 	this.shape.setX(x);
-
+				  
   };
 
   this.changeY = function(y) {
@@ -250,14 +259,18 @@ var Tetrominoes = function()
 		 field.fieldArray[10+this.shape.getBlock2().position.y-1][this.shape.getBlock2().position.x] == 0 &&
 		 field.fieldArray[10+this.shape.getBlock3().position.y-1][this.shape.getBlock3().position.x] == 0 &&
 		 field.fieldArray[10+this.shape.getBlock4().position.y-1][this.shape.getBlock4().position.x] == 0)
+		 
 		  {
 		  this.shape.setY(y);
 		  }
 	  else
 		  {
 		  this.setState(false);
+	      fillArray();
+	      checkRows();
+	      alert(field.fieldArray[10+this.shape.getBlock1().position.y-1][this.shape.getBlock1().position.x]);
 		  }
-
+	  
   };
 
   this.rotate = function() {
@@ -265,8 +278,7 @@ var Tetrominoes = function()
   };
   
   
-  this.changeX(5);
-  this.changeY(10-this.shape.getMaxY());
+
   
   return this;
 };

@@ -268,7 +268,6 @@ var Tetrominoes = function()
 		  this.setState(false);
 	      fillArray();
 	      checkRows();
-	      alert(field.fieldArray[10+this.shape.getBlock1().position.y-1][this.shape.getBlock1().position.x]);
 		  }
 	  
   };

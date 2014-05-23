@@ -64,6 +64,7 @@ function checkRows()
 
 function removeRow(row)
 {
+	updatePunkte();
   for(var x=0; x<10; ++x) {
     //field.fieldArray[row][x] = 0;
     // hier scene.remove() aufrufen

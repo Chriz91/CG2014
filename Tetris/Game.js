@@ -15,3 +15,9 @@ function newTet()
   tet = new Tetrominoes();
   moveBlock();
 }
+
+
+function updatePunkte()
+{
+	document.getElementById("punkte").value += 10;
+}

@@ -27,9 +27,9 @@ document.onkeydown = function( evt)
 
 function moveBlock()
 {
-  if(tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
+	if(tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
     tet.changeY(-1);
-    setTimeout("moveBlock()", 1000);
+    setTimeout("moveBlock()", speedvalue);
   }
   else {
     if(boolgame == true) {

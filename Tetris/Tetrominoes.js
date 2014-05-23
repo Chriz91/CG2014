@@ -189,6 +189,14 @@ var Shape = function()
 			
 		};
 		
+		this.setZ = function(z){
+			this.getBlock1().position.z += z;
+			this.getBlock2().position.z += z;
+			this.getBlock3().position.z += z;
+			this.getBlock4().position.z += z;
+			
+		};
+		
 		this.getBlock1 = function()
 		{
 			return block1;
@@ -222,7 +230,7 @@ var Shape = function()
 
 function CreateGeometry()
 {
-  var geometry = new THREE.PlaneGeometry(1, 1, 1); 
+  var geometry = new THREE.CubeGeometry(1, 1, 1); 
   return geometry;
 }
 
@@ -237,6 +245,8 @@ var Tetrominoes = function()
   
 	this.shape.setX(5);
 	this.shape.setY(10-this.shape.getMaxY());
+	this.shape.setZ(1);
+	
 
   
   this.setState = function(bool)
@@ -250,8 +260,10 @@ var Tetrominoes = function()
   }
 
   this.changeX = function(x) {
+	  
+		  
 	this.shape.setX(x);
-				  
+		  
   };
 
   this.changeY = function(y) {

@@ -10,6 +10,7 @@ var field;
 
 function update()
 {
+  
   render();
 }
 

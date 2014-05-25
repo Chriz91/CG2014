@@ -261,8 +261,23 @@ var Tetrominoes = function()
 
   this.changeX = function(x) {
 	  
-		  
+			  if(x>0 &&
+				 field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getMaxX()+1]== 0 &&
+				 field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getMaxX()+1]== 0 &&
+				 field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getMaxX()+1]== 0 &&
+				 field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getMaxX()+1]== 0 )
+		  {
 	this.shape.setX(x);
+		  }
+			  
+			  else if(x<0 &&
+						 field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getMinX()-1]== 0 &&
+						 field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getMinX()-1]== 0 &&
+						 field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getMinX()-1]== 0 &&
+						 field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getMinX()-1]== 0 )
+				  {
+			this.shape.setX(x);
+				  }
 		  
   };
 
@@ -285,7 +300,7 @@ var Tetrominoes = function()
   };
 
   this.rotate = function() {
-    this.shape.rotation.z += 90*Math.PI/180;
+
   };
   
   

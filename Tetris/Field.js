@@ -1,6 +1,5 @@
 var Field = function(spalten , zeilen) {
 
-
   var grid = new THREE.Geometry();
 
   var i = 0;
@@ -11,7 +10,7 @@ var Field = function(spalten , zeilen) {
 	grid.vertices.push(new THREE.Vector3(spalten, i, 0));
   }
 
-  for (var j; j <= spalten; j++) {
+  for (j; j <= spalten; j++) {
     grid.vertices.push(new THREE.Vector3(j, 0, 0));
     grid.vertices.push(new THREE.Vector3(j, zeilen, 0));
   }
@@ -34,5 +33,6 @@ var Field = function(spalten , zeilen) {
       this.fieldArray[x][y] = 0;
     }
   }
+  
   return this;
 };

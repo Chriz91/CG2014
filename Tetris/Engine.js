@@ -1,24 +1,32 @@
+var flag = true;
+
 document.onkeydown = function( evt)
 {
   evt = evt || window.event;
   switch (evt.keyCode)
   {
     case 37: // links
-      if(tet.shape.getMinX() >= 0.5) {
+      if(tet.shape.getMinX() >= 0.5 && flag == true) {
+    	  flag = false;
         tet.changeX(-1);
+        flag = true;
       }
       break;
     case 38: // oben
       tet.rotate();
       break;
     case 39: // rechts
-      if(tet.shape.getMaxX() <= 8.5) {
+      if(tet.shape.getMaxX() <= 8.5 && flag == true) {
+    	  flag = false;
         tet.changeX(1);
+        flag = true;
       }
       break ;
     case 40: // unten
-      if(tet.shape.getMinY() >= 0.5 + OffsetY) {
+      if(tet.shape.getMinY() >= 0.5 + OffsetY && flag == true) {
+    	  flag = false;
         tet.changeY(-1);
+        flag = true;
       }
       break;
   }

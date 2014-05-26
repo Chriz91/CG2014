@@ -65,6 +65,7 @@ function checkRows()
 function removeRow(row)
 {
 	updatePunkte();
+	
   for(var x=0; x<10; ++x) {
     //field.fieldArray[row][x] = 0;
     // hier scene.remove() aufrufen
@@ -98,11 +99,11 @@ function fillArray(){
 	field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x]=tet.shape.getBlock3();
 	field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x]=tet.shape.getBlock4();
 	
-	
+	/*
 	for(var x = 19; x >= 0; --x) 
 	{ var line = (x<10?" ":"") + x + "| "; 
 	for(var y = 0; y < 10; ++y) { line += field.fieldArray[x][y] + " "; } 
 	console.log(line); } 
-	 
+	 */
 	 
 }

@@ -13,7 +13,15 @@ var Field = function(spalten , zeilen) {
   for (j; j <= spalten; j++) {
     grid.vertices.push(new THREE.Vector3(j, 0, 0));
     grid.vertices.push(new THREE.Vector3(j, zeilen, 0));
+    
   }
+  
+  for(var k = 0; k <= spalten; k++)
+	  {
+	  grid.vertices.push(new THREE.Vector3(k,0,0));
+	  grid.vertices.push(new THREE.Vector3(k, 0, 1));
+	  }
+ 
 
   var gridline = new THREE.LineBasicMaterial({
     color : 0xffffff
@@ -23,6 +31,7 @@ var Field = function(spalten , zeilen) {
 
   gridsystem.position.x += OffsetX-0.5;
   gridsystem.position.y += OffsetY-0.5;
+  gridsystem.position.z = 0.5;
   scene.add(gridsystem);
   
   this.fieldArray = new Array(20);

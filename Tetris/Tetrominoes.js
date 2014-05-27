@@ -243,7 +243,6 @@ var Tetrominoes = function()
   this.shape.setY(9-this.shape.getMaxY());
   this.shape.setZ(1);
 
-
   this.setState = function(bool)
   {
     this.state = bool;
@@ -255,29 +254,22 @@ var Tetrominoes = function()
   }
 
   this.changeX = function(x) {
-
-			  if(x>0 &&
-				 field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x+1]== 0 &&
-				 field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x+1]== 0 &&
-				 field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x+1]== 0 &&
-				 field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x+1]== 0 )
-		  {
-	this.shape.setX(x);
-		  }
-			  
-			  else if(x<0 &&
-						 field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x-1]== 0 &&
-						 field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x-1]== 0 &&
-						 field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x-1]== 0 &&
-						 field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x-1]== 0 )
-				  {
-			this.shape.setX(x);
-				  }
-			  else
-				  {
-				  alert(this.shape.getMaxX()+1);
-				  alert(this.shape.getMinX()-1);
-				  }
+    if(x>0 &&
+       field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x+1]== 0 &&
+       field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x+1]== 0 &&
+       field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x+1]== 0 &&
+       field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x+1]== 0 )
+    {
+      this.shape.setX(x);
+    }
+    else if(x<0 &&
+            field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x-1]== 0 &&
+            field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x-1]== 0 &&
+            field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x-1]== 0 &&
+            field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x-1]== 0 )
+    {
+      this.shape.setX(x);
+    }
   };
 
   this.changeY = function(y) {
@@ -299,37 +291,64 @@ var Tetrominoes = function()
     switch(this.shape.getNumber()) {
       case shapes.LINESHAPE:
         alert("Line");
-        rotateLineShape();
+        this.rotateLineShape();
         break;
       case shapes.SQUARESHAPE:
         // do nothing
         break;
       case shapes.TSHAPE:
-        alert("T");
+        this.rotateTShape();
         break;
       case shapes.ZSHAPE:
-        alert("Z");
+        this.rotateZShape();
         break;
       case shapes.SSHAPE:
-        alert("S");
+        this.rotateSShape();
         break;
       case shapes.LSHAPE:
-        alert("L");
+        this.rotateLShape();
         break;
       case shapes.MIRROREDLSHAPE:
-        alert("ML");
+        this.rotateMirroredLShape();
         break;
       default:
         break;
     }
   };
   
-  function rotateLineShape()
+  this.rotateLineShape = function()
   {
     
   }
   
-  function rotateTShape()
+  this.rotateTShape = function()
+  {
+    var positions = this.getBlockPositions();
+    console.log(positions);
+    
+  }
+  
+  this.rotateZShape = function()
+  {
+    
+  }
+  
+  this.rotateSShape = function()
+  {
+    
+  }
+  
+  this.rotateLShape = function()
+  {
+    
+  }
+  
+  this.rotateMirroredLShape = function()
+  {
+    
+  }
+  
+  this.getBlockPositions = function()
   {
     var positions = [
                      [
@@ -349,27 +368,7 @@ var Tetrominoes = function()
                       this.shape.getBlock4().position.y
                      ]
                     ];
-    
-  }
-  
-  function rotateZShape()
-  {
-    
-  }
-  
-  function rotateSShape()
-  {
-    
-  }
-  
-  function rotateLShape()
-  {
-    
-  }
-  
-  function rotateMirroredLShape()
-  {
-    
+    return positions;
   }
 
   return this;

@@ -1,7 +1,7 @@
 var tet;
 var boolgame;
 var speedvalue = 1000;
-var punkte = 10;
+var punkte = 0;
 
 function game()
 {

@@ -7,9 +7,9 @@ document.onkeydown = function( evt)
   {
     case 37: // links
       if(tet.shape.getMinX() >= 0.5 && flag == true) {
-    	  flag = false;
+    	 
         tet.changeX(-1);
-        flag = true;
+       
       }
       break;
     case 38: // oben
@@ -17,16 +17,16 @@ document.onkeydown = function( evt)
       break;
     case 39: // rechts
       if(tet.shape.getMaxX() <= 8.5 && flag == true) {
-    	  flag = false;
+    	 
         tet.changeX(1);
-        flag = true;
+       
       }
       break ;
     case 40: // unten
       if(tet.shape.getMinY() >= 0.5 + OffsetY && flag == true) {
-    	  flag = false;
+    	
         tet.changeY(-1);
-        flag = true;
+        
       }
       break;
   }
@@ -107,11 +107,11 @@ function fillArray(){
 	field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x]=tet.shape.getBlock3();
 	field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x]=tet.shape.getBlock4();
 	
-	/*
+	
 	for(var x = 19; x >= 0; --x) 
 	{ var line = (x<10?" ":"") + x + "| "; 
 	for(var y = 0; y < 10; ++y) { line += field.fieldArray[x][y] + " "; } 
 	console.log(line); } 
-	 */
+	
 	 
 }

@@ -10,7 +10,6 @@ var field;
 
 function update()
 {
-  
   render();
 }
 
@@ -20,6 +19,7 @@ function render()
   requestAnimationFrame(render);
   renderer.render(scene, camera);
 }
+
 
 function resize()
 {

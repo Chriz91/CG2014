@@ -255,8 +255,7 @@ var Tetrominoes = function()
   }
 
   this.changeX = function(x) {
-<<<<<<< HEAD
-	  
+
 			  if(x>0 &&
 				 field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x+1]== 0 &&
 				 field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x+1]== 0 &&
@@ -279,25 +278,6 @@ var Tetrominoes = function()
 				  alert(this.shape.getMaxX()+1);
 				  alert(this.shape.getMinX()-1);
 				  }
-		  
-=======
-    if(x>0 &&
-       field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getMaxX()+1]== 0 &&
-       field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getMaxX()+1]== 0 &&
-       field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getMaxX()+1]== 0 &&
-       field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getMaxX()+1]== 0 )
-    {
-      this.shape.setX(x);
-    }
-    else if(x<0 &&
-            field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getMinX()-1]== 0 &&
-            field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getMinX()-1]== 0 &&
-            field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getMinX()-1]== 0 &&
-            field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getMinX()-1]== 0 )
-	{
-      this.shape.setX(x);
-    }	  
->>>>>>> branch 'develop' of https://github.com/Chriz91/CG2014
   };
 
   this.changeY = function(y) {

@@ -95,7 +95,7 @@ function removeRow(row)
 }
 
 
-<<<<<<< HEAD
+
 function fillArray(){
 	
 
@@ -110,14 +110,5 @@ function fillArray(){
 	{ var line = (x<10?" ":"") + x + "| "; 
 	for(var y = 0; y < 10; ++y) { line += field.fieldArray[x][y] + " "; } 
 	console.log(line); } 
-	
-	 
-=======
-function fillArray()
-{
-  field.fieldArray[tet.shape.getBlock1().position.y+10][tet.shape.getBlock1().position.x] = tet.shape.getBlock1();
-  field.fieldArray[tet.shape.getBlock2().position.y+10][tet.shape.getBlock2().position.x] = tet.shape.getBlock2();
-  field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x] = tet.shape.getBlock3();
-  field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x] = tet.shape.getBlock4();
->>>>>>> branch 'develop' of https://github.com/Chriz91/CG2014
+
 }

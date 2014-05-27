@@ -314,15 +314,24 @@ var Tetrominoes = function()
     // Im Original kippt er immer nur zwischen langem Teil rechts und oben; hier dreht er sich richtig
     var block1 = this.shape.getBlock1();
     var block2 = this.shape.getBlock2();
-    var block3 = this.shape.getBlock3();
     var block4 = this.shape.getBlock4();
     
-    var blockToRotate = block3;
+    var blockToRotate = this.shape.getBlock3();
     var bottomBlock = block4;
 
-    //var sign = (bottomBlock.position.x == blockToRotate.position.x ? 1 : -1);
-    //var invert = (bottomBlock.position.y < blockToRotate.position.y ? 1 : -1);
+    var sign = (bottomBlock.position.x == blockToRotate.position.x ? 1 : -1);
+    var invert = sign == 1 ? (bottomBlock.position.y < blockToRotate.position.y ? 1 : -1) :
+                             (bottomBlock.position.x < blockToRotate.position.x ? 1 : -1);
 
+    block1.position.x +=  2 * invert * sign;
+    block1.position.y += -2 * invert;
+    block2.position.x +=  1 * invert * sign;
+    block2.position.y += -1 * invert;
+    block4.position.x += -1 * invert * sign;
+    block4.position.y +=  1 * invert;
+
+    /*
+    //Hier das seöbe wie oben, aber ausfuehrlich; nur zum Verstaendnis, wird demnaechst geloescht
     if (bottomBlock.position.x == blockToRotate.position.x) {
       if (bottomBlock.position.y < blockToRotate.position.y) { //kurzes Ende unten
         block1.position.x += 2;
@@ -359,6 +368,7 @@ var Tetrominoes = function()
         block4.position.y += -1;
       }
     }
+    */
   }
   
   
@@ -366,10 +376,9 @@ var Tetrominoes = function()
   {
     var block1 = this.shape.getBlock1();
     var block2 = this.shape.getBlock2();
-    var block3 = this.shape.getBlock3();
     var block4 = this.shape.getBlock4();
 
-    var blockToRotate = block3;
+    var blockToRotate = this.shape.getBlock3();
 
     var x1 = block1.position.x,
         x2 = block2.position.x,
@@ -406,7 +415,30 @@ var Tetrominoes = function()
     
     else {
       // T steht senkrecht
-      //TODO:
+      if (x1 == x2) { // T steht waagrecht, block4 ist einzelner Block
+        if (block4.position.x < blockToRotate.position.x) {
+          moveBottomBlockRight(y1 < y2 ? block1 : block2); // der einzelne Block ist links, der untere Block muss nach rechts
+        }
+        else {
+          moveUpperBlockLeft(y1 > y2 ? block1 : block2); // der einzelne Block ist rechts, der obere Block muss nach links
+        }
+      }
+      else if (x1 == x4) { // T steht waagrecht, block2 ist einzelner Block
+        if (block2.position.x < blockToRotate.position.x) {
+          moveBottomBlockRight(y1 < y4 ? block1 : block4); // der einzelne Block ist links, der untere Block muss nach rechts
+        }
+        else {
+          moveUpperBlockLeft(y1 > y4 ? block1 : block4); // der einzelne Block ist rechts, der obere Block muss nach links
+        }
+      }
+      else if (x2 == x4) { // T steht waagrecht, block1 ist einzelner Block
+        if (block1.position.x < blockToRotate.position.x) {
+          moveBottomBlockRight(y2 < y4 ? block2 : block4); // der einzelne Block ist links, der untere Block muss nach rechts
+        }
+        else {
+          moveUpperBlockLeft(y2 > y4 ? block2 : block4); // der einzelne Block ist rechts, der obere Block muss nach links
+        }
+      }
     }
   }
 
@@ -422,15 +454,18 @@ var Tetrominoes = function()
     block.position.x += 1;
     block.position.y += -1;
   }
-/*
-  function moveBottomBlockLeft(block) {
-    
+
+  function moveBottomBlockRight(block)
+  {
+    block.position.x += 1;
+    block.position.y += 1;
   }
 
-  function moveUpperBlockRight(block) {
-    
+  function moveUpperBlockLeft(block)
+  {
+    block.position.x += -1;
+    block.position.y += -1;
   }
-*/
   
   
   this.rotateZShape = function()

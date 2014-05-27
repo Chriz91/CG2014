@@ -80,55 +80,57 @@ var Shape = function()
                      0xff0000,
                      ];
 
+  // WICHTIG: es wird um den 3. Block rotiert,
+  // Reihenfolge der einzelnen Shapes nicht veraendern!
   this.ShapeArray = [
                      // Lineshape
                      [
-                      [0, 0],
-                      [0, 1],
-                      [0, 2],
                       [0, 3],
+                      [0, 2],
+                      [0, 1],
+                      [0, 0]                      
                      ],
                      // Quadrat
                      [
                       [0, 0],
                       [0, 1],
                       [1, 0],
-                      [1, 1],
+                      [1, 1]
                      ],
                      // T-Form
                      [
                       [0, 0],
                       [-1, 1],
                       [0, 1],
-                      [1, 1],
+                      [1, 1]
                      ],
                      // Z-Form
                      [
-                      [0, 0],
                       [-1, 1],
                       [1, 0],
-                      [0, 1],
+                      [0, 0],
+                      [0, 1]
                      ],	
                      // S-Form
                      [
-                      [0, 0],
                       [1, 1],
                       [-1, 0],
-                      [0, 1],
+                      [0, 0],
+                      [0, 1]
                      ],	
                      // L-Form
                      [
                       [0, 0],
                       [1, 0],
-                      [0, 2],
                       [0, 1],
+                      [0, 2]
                      ],	
                      // Mirrored L
                      [
                       [0, 0],
                       [-1, 0],
-                      [0, 2],
                       [0, 1],
+                      [0, 2]
                      ],	
                     ];
 	
@@ -164,14 +166,6 @@ var Shape = function()
     this.getBlock4().position.y = this.ShapeArray[number][3][1];
   };
   
-  // Block um den herum rotiert wird
-  var blockToRotate = 
-
-  this.getBlockToRotate = function()
-  {
-    return blockToRotate;
-  };
-
   this.setX = function(x)
   {
     this.getBlock1().position.x += x;
@@ -290,7 +284,6 @@ var Tetrominoes = function()
   this.rotate = function() {
     switch(this.shape.getNumber()) {
       case shapes.LINESHAPE:
-        alert("Line");
         this.rotateLineShape();
         break;
       case shapes.SQUARESHAPE:
@@ -318,36 +311,152 @@ var Tetrominoes = function()
   
   this.rotateLineShape = function()
   {
+    // Im Original kippt er immer nur zwischen langem Teil rechts und oben; hier dreht er sich richtig
+    var block1 = this.shape.getBlock1();
+    var block2 = this.shape.getBlock2();
+    var block3 = this.shape.getBlock3();
+    var block4 = this.shape.getBlock4();
     
+    var blockToRotate = block3;
+    var bottomBlock = block4;
+
+    //var sign = (bottomBlock.position.x == blockToRotate.position.x ? 1 : -1);
+    //var invert = (bottomBlock.position.y < blockToRotate.position.y ? 1 : -1);
+
+    if (bottomBlock.position.x == blockToRotate.position.x) {
+      if (bottomBlock.position.y < blockToRotate.position.y) { //kurzes Ende unten
+        block1.position.x += 2;
+        block1.position.y += -2;
+        block2.position.x += 1;
+        block2.position.y += -1;
+        block4.position.x += -1;
+        block4.position.y += 1;
+      }
+      else { // kurzes Ende oben
+        block1.position.x += -2;
+        block1.position.y += 2;
+        block2.position.x += -1;
+        block2.position.y += 1;
+        block4.position.x += 1;
+        block4.position.y += -1;
+      }
+    }
+    else {
+      if (bottomBlock.position.x < blockToRotate.position.x) { // kurzes Ende links
+        block1.position.x += -2;
+        block1.position.y += -2;
+        block2.position.x += -1;
+        block2.position.y += -1;
+        block4.position.x += 1;
+        block4.position.y += 1;
+      }
+      else { // kurzes Ende rechts; zurueck in Urposition
+        block1.position.x += 2;
+        block1.position.y += 2;
+        block2.position.x += 1;
+        block2.position.y += 1;
+        block4.position.x += -1;
+        block4.position.y += -1;
+      }
+    }
   }
+  
   
   this.rotateTShape = function()
   {
-    var positions = this.getBlockPositions();
-    console.log(positions);
+    var block1 = this.shape.getBlock1();
+    var block2 = this.shape.getBlock2();
+    var block3 = this.shape.getBlock3();
+    var block4 = this.shape.getBlock4();
+
+    var blockToRotate = block3;
+
+    var x1 = block1.position.x,
+        x2 = block2.position.x,
+        x4 = block4.position.x;
+
+    var y1 = block1.position.y,
+        y2 = block2.position.y,
+        y4 = block4.position.y;
+
+    if (y1 == y2) { // T steht waagrecht, block4 ist einzelner Block
+      if (block4.position.y < blockToRotate.position.y) {
+        moveRightBlockUp(x1 > x2 ? block1 : block2); // T steht richtig rum, der rechte Block muss nach oben
+      }
+      else {
+        moveLeftBlockDown(x1 < x2 ? block1 : block2); // T steht auf dem Kopf, der linke Block muss nach unten
+      }
+    }
+    else if (y1 == y4) { // T steht waagrecht, block2 ist einzelner Block
+      if (block2.position.y < blockToRotate.position.y) {
+        moveRightBlockUp(x1 > x4 ? block1 : block4); // T steht richtig rum, der rechte Block muss nach oben
+      }
+      else {
+        moveLeftBlockDown(x1 < x4 ? block1 : block4); // T steht auf dem Kopf, der linke Block muss nach unten
+      }
+    }
+    else if (y2 == y4) { // T steht waagrecht, block1 ist einzelner Block
+      if (block1.position.y < blockToRotate.position.y) {
+        moveRightBlockUp(x2 > x4 ? block2 : block4); // T steht richtig rum, der rechte Block muss nach oben
+      }
+      else {
+        moveLeftBlockDown(x2 < x4 ? block2 : block4); // T steht auf dem Kopf, der linke Block muss nach unten
+      }
+    }
+    
+    else {
+      // T steht senkrecht
+      //TODO:
+    }
+  }
+
+  // Hilfsfunktionen
+  function moveRightBlockUp(block)
+  {
+    block.position.x += -1;
+    block.position.y += 1;
+  }
+
+  function moveLeftBlockDown(block)
+  {
+    block.position.x += 1;
+    block.position.y += -1;
+  }
+/*
+  function moveBottomBlockLeft(block) {
     
   }
+
+  function moveUpperBlockRight(block) {
+    
+  }
+*/
+  
   
   this.rotateZShape = function()
   {
     
   }
   
+  
   this.rotateSShape = function()
   {
     
   }
+  
   
   this.rotateLShape = function()
   {
     
   }
   
+  
   this.rotateMirroredLShape = function()
   {
     
   }
   
+/*  
   this.getBlockPositions = function()
   {
     var positions = [
@@ -357,7 +466,7 @@ var Tetrominoes = function()
                      ],
                      [
                       this.shape.getBlock2().position.x,
-                      this.shape.getBlock3().position.y
+                      this.shape.getBlock2().position.y
                      ],
                      [
                       this.shape.getBlock3().position.x,
@@ -370,7 +479,7 @@ var Tetrominoes = function()
                     ];
     return positions;
   }
-
+*/
   return this;
 };
 

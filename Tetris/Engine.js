@@ -35,7 +35,12 @@ document.onkeydown = function( evt)
 
 function moveBlock()
 {
-	if(tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
+	if(field.fieldArray[19][5] != 0)
+	{
+	boolgame= false;
+	alert("Spiel zuende");
+	}
+else if(tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
     tet.changeY(-1);
     setTimeout("moveBlock()", speedvalue);
   }
@@ -46,11 +51,9 @@ function moveBlock()
       checkRows();
       newTet();
     }
-    else {
-      alert("Spiel zuende");
     }
   }
-}
+
 
 
 function checkRows()

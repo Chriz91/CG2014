@@ -36,3 +36,8 @@ function updateSchwierigkeit()
 {
   speedvalue -= 100;
 }
+
+function newGame()
+{
+	window.location.reload();
+}

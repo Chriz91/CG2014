@@ -240,7 +240,7 @@ var Tetrominoes = function()
   this.shape.setShape();
   
   this.shape.setX(5);
-  this.shape.setY(10-this.shape.getMaxY());
+  this.shape.setY(9-this.shape.getMaxY());
   this.shape.setZ(1);
 
 

@@ -1,4 +1,5 @@
 var flag = true;
+var hardcore = false;
 
 document.onkeydown = function( evt)
 {
@@ -35,6 +36,7 @@ document.onkeydown = function( evt)
 
 function moveBlock()
 {
+	if(hardcore == true){
 	if(field.fieldArray[19][5] != 0)
 	{
 	boolgame= false;
@@ -43,6 +45,7 @@ function moveBlock()
 else if(tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
     tet.changeY(-1);
     setTimeout("moveBlock()", speedvalue);
+    camera.rotation.z += 15*Math.PI/180;
   }
   else {
     if(boolgame == true) {
@@ -53,7 +56,28 @@ else if(tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
     }
     }
   }
-
+	else
+		{
+		if(field.fieldArray[19][5] != 0)
+		{
+		boolgame= false;
+		alert("Spiel zuende");
+		}
+	else if(tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
+	    tet.changeY(-1);
+	    setTimeout("moveBlock()", speedvalue);
+	    
+	  }
+	  else {
+	    if(boolgame == true) {
+	      tet.setState(false);
+	      fillArray();
+	      checkRows();
+	      newTet();
+	    }
+	    }
+		}
+}
 
 
 function checkRows()
@@ -114,4 +138,16 @@ function fillArray(){
 	for(var y = 0; y < 10; ++y) { line += field.fieldArray[x][y] + " "; } 
 	console.log(line); } 
 
+}
+
+function setModeTrue()
+{
+	hardcore = true;
+	update();
+}
+
+function setModeFalse()
+{
+	hardcore = false;
+	update();
 }

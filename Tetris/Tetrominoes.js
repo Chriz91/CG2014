@@ -114,16 +114,16 @@ var Shape = function()
                      // Z-Form
                      [
                       [-1, 1],
-                      [1, 0],
+                      [0, 1],
                       [0, 0],
-                      [0, 1]
+                      [1, 0]
                      ],	
                      // S-Form
                      [
                       [1, 1],
-                      [-1, 0],
+                      [0, 1],
                       [0, 0],
-                      [0, 1]
+                      [-1, 0]
                      ],	
                      // L-Form
                      [
@@ -299,39 +299,39 @@ var Tetrominoes = function()
   this.rotate = function() {
     switch(this.shape.getNumber()) {
       case shapes.LINESHAPE:
-        this.rotateLineShape();
+        rotateLineShape(this.shape);
         break;
       case shapes.SQUARESHAPE:
         // do nothing
         break;
       case shapes.TSHAPE:
-        this.rotateTShape();
+        rotateTShape(this.shape);
         break;
       case shapes.ZSHAPE:
-        this.rotateZShape();
+        rotateZShape(this.shape);
         break;
       case shapes.SSHAPE:
-        this.rotateSShape();
+        rotateSShape(this.shape);
         break;
       case shapes.LSHAPE:
-        this.rotateLShape();
+        rotateLShape(this.shape);
         break;
       case shapes.MIRROREDLSHAPE:
-        this.rotateMirroredLShape();
+        rotateMirroredLShape(this.shape);
         break;
       default:
         break;
     }
   };
   
-  this.rotateLineShape = function()
+  function rotateLineShape(shape)
   {
     // Im Original kippt er immer nur zwischen langem Teil rechts und oben; hier dreht er sich richtig
-    var block1 = this.shape.getBlock1();
-    var block2 = this.shape.getBlock2();
-    var block4 = this.shape.getBlock4();
+    var block1 = shape.getBlock1();
+    var block2 = shape.getBlock2();
+    var block4 = shape.getBlock4();
     
-    var blockToRotate = this.shape.getBlock3();
+    var blockToRotate = shape.getBlock3();
     var bottomBlock = block4;
 
     var sign = (bottomBlock.position.x == blockToRotate.position.x ? 1 : -1);
@@ -345,17 +345,17 @@ var Tetrominoes = function()
     block4.position.x += -1 * invert * sign;
     block4.position.y +=  1 * invert;
 
-	this.shape.updateOrientation();
-  };
+	shape.updateOrientation();
+  }
   
   
-  this.rotateTShape = function()
+  function rotateTShape(shape)
   {
-    var block1 = this.shape.getBlock1();
-    var block2 = this.shape.getBlock2();
-    var block4 = this.shape.getBlock4();
+    var block1 = shape.getBlock1();
+    var block2 = shape.getBlock2();
+    var block4 = shape.getBlock4();
 
-    var blockToRotate = this.shape.getBlock3();
+    var blockToRotate = shape.getBlock3();
 
     var x1 = block1.position.x,
         x2 = block2.position.x,
@@ -418,8 +418,8 @@ var Tetrominoes = function()
       }
     }
 	
-	this.shape.updateOrientation();
-  };
+	shape.updateOrientation();
+  }
 
   // Hilfsfunktionen
   function moveRightBlockUp(block)
@@ -447,80 +447,76 @@ var Tetrominoes = function()
   }
   
   
-  this.rotateZShape = function()
-  {
-     
-    
-    this.shape.updateOrientation();
-  };
-  
-  
-  this.rotateSShape = function()
-  {
-     
-    
-    this.shape.updateOrientation();
-  };
-  
-  
-  this.rotateLShape = function()
-  {
-    var block1 = this.shape.getBlock1();
-    var block2 = this.shape.getBlock2();
-    var block4 = this.shape.getBlock4();
-    
-    var sign = this.shape.orientation == orientation.UP || this.shape.orientation == orientation.DOWN ? 1 : -1;
-    var invert = this.shape.orientation == orientation.UP || this.shape.orientation == orientation.RIGHT ? 1 : -1;
-    
-    block1.position.x += (sign == 1 ? -2 : 0) * invert;
-    block1.position.y += (sign == 1 ? 0 : 2) * invert;
-    block2.position.x += -1 * invert * sign;
-    block2.position.y +=  1 * invert;
-    block4.position.x +=  1 * invert * sign;
-    block4.position.y += -1 * invert;
-    
-    this.shape.updateOrientation();
-  };
-  
-  
-  this.rotateMirroredLShape = function()
-  {
-    var block1 = this.shape.getBlock1();
-    var block2 = this.shape.getBlock2();
-    var block4 = this.shape.getBlock4();
-    
-    var sign = this.shape.orientation == orientation.UP || this.shape.orientation == orientation.DOWN ? 1 : -1;
-    var invert = this.shape.orientation == orientation.UP || this.shape.orientation == orientation.RIGHT ? 1 : -1;
-    
-    block1.position.x += (sign == 1 ? 0 : 2) * invert;
-    block1.position.y += (sign == 1 ? 2 : 0) * invert;
-    block2.position.x += -1 * invert * sign;
-    block2.position.y +=  1 * invert;
-    block4.position.x +=  1 * invert * sign;
-    block4.position.y += -1 * invert;
-
-    this.shape.updateOrientation();
-  };
-/*  
-  function rotateL(shape, x1, y1, x2, y2)
+  function rotateZShape(shape)
   {
     var block1 = shape.getBlock1();
     var block2 = shape.getBlock2();
     var block4 = shape.getBlock4();
+
+    var sign = shape.orientation == orientation.UP || shape.orientation == orientation.DOWN ? 1 : -1;
+    var invert = shape.orientation == orientation.UP || shape.orientation == orientation.RIGHT ? 1 : -1;
+
+    block1.position.x += (sign == 1 ? 2 : 0) * invert;
+    block1.position.y += (sign == 1 ? 0 : -2) * invert;
+    block2.position.x +=  1 * invert * sign;
+    block2.position.y += -1 * invert;
+    block4.position.x += -1 * invert;
+    block4.position.y += -1 * invert * sign;
+
+    shape.updateOrientation();
+  }
+
+
+  function rotateSShape(shape)
+  {
+    var block1 = shape.getBlock1();
+    var block2 = shape.getBlock2();
+    var block4 = shape.getBlock4();
+
+    var sign = shape.orientation == orientation.UP || shape.orientation == orientation.DOWN ? 1 : -1;
+    var invert = shape.orientation == orientation.UP || shape.orientation == orientation.RIGHT ? 1 : -1;
+
+    block1.position.x += (sign == 1 ? 0 : -2) * invert;
+    block1.position.y += (sign == 1 ? -2 : 0) * invert;
+    block2.position.x +=  1 * invert * sign;
+    block2.position.y += -1 * invert;
+    block4.position.x +=  1 * invert;
+    block4.position.y +=  1 * invert * sign;
     
-    var sign = shape.orientation == orientation.UP || this.shape.orientation == orientation.DOWN ? 1 : -1;
-    var invert = shape.orientation == orientation.UP || this.shape.orientation == orientation.RIGHT ? 1 : -1;
-    
-    block1.position.x += (sign == 1 ? x1 : y1) * invert;
-    block1.position.y += (sign == 1 ? x2 : y2) * invert;
+    shape.updateOrientation();
+  }
+
+  
+  function rotateLShape(shape)
+  {
+    rotateL(shape, -2, 0, 0, 2);
+  }
+
+  function rotateMirroredLShape(shape)
+  {
+    rotateL(shape, 0, 2, 2, 0);
+  }
+
+  function rotateL(shape, x1, x2, y1, y2)
+  {
+    var block1 = shape.getBlock1();
+    var block2 = shape.getBlock2();
+    var block4 = shape.getBlock4();
+
+    var sign = shape.orientation == orientation.UP || shape.orientation == orientation.DOWN ? 1 : -1;
+    var invert = shape.orientation == orientation.UP || shape.orientation == orientation.RIGHT ? 1 : -1;
+
+    block1.position.x += (sign == 1 ? x1 : x2) * invert;
+    block1.position.y += (sign == 1 ? y1 : y2) * invert;
     block2.position.x += -1 * invert * sign;
     block2.position.y +=  1 * invert;
     block4.position.x +=  1 * invert * sign;
     block4.position.y += -1 * invert;
 
-    this.shape.updateOrientation();
+    shape.updateOrientation();
   }
-  */
+  
+
   return this;
 };
 

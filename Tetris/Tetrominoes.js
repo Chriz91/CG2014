@@ -1,4 +1,4 @@
-var shapes = { // enumeration for shapes
+var shapes = {
     LINESHAPE:      0,
     SQUARESHAPE:    1,
     TSHAPE:         2,
@@ -8,7 +8,7 @@ var shapes = { // enumeration for shapes
     MIRROREDLSHAPE: 6
 };
 
-var orientation = { // enumeration for orientation
+var orientation = {
     UP:     0,
     RIGHT:  1,
     DOWN:   2,
@@ -88,7 +88,7 @@ var Shape = function()
                      ];
 
   // WICHTIG: es wird um den 3. Block rotiert,
-  // Reihenfolge der einzelnen Shapes nicht veraendern!
+  // Reihenfolge darf nicht veraendert werden!
   this.ShapeArray = [
                      // Lineshape
                      [
@@ -264,18 +264,18 @@ var Tetrominoes = function()
 
   this.changeX = function(x) {
     if(x > 0 &&
-       field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x+1]== 0 &&
-       field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x+1]== 0 &&
-       field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x+1]== 0 &&
-       field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x+1]== 0 )
+       field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x+1] == 0 &&
+       field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x+1] == 0 &&
+       field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x+1] == 0 &&
+       field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x+1] == 0 )
     {
       this.shape.setX(x);
     }
     else if(x < 0 &&
-            field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x-1]== 0 &&
-            field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x-1]== 0 &&
-            field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x-1]== 0 &&
-            field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x-1]== 0 )
+            field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x-1] == 0 &&
+            field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x-1] == 0 &&
+            field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x-1] == 0 &&
+            field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x-1] == 0 )
     {
       this.shape.setX(x);
     }

@@ -264,10 +264,10 @@ var Tetrominoes = function()
 
   this.changeX = function(x) {
     if(x > 0 &&
-       field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x+1] == 0 &&
+       field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x+1] == 0 && // i.A. muesste das +1 hinten wsl. +x sein; hier aber egal
        field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x+1] == 0 &&
        field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x+1] == 0 &&
-       field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x+1] == 0 )
+       field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x+1] == 0)
     {
       this.shape.setX(x);
     }
@@ -275,7 +275,7 @@ var Tetrominoes = function()
             field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x-1] == 0 &&
             field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x-1] == 0 &&
             field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x-1] == 0 &&
-            field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x-1] == 0 )
+            field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x-1] == 0)
     {
       this.shape.setX(x);
     }
@@ -323,7 +323,8 @@ var Tetrominoes = function()
         break;
     }
   };
-  
+
+
   function rotateLineShape(shape)
   {
     var block1 = shape.getBlock1();
@@ -337,14 +338,29 @@ var Tetrominoes = function()
     var invert = sign == 1 ? (bottomBlock.position.y < blockToRotate.position.y ? 1 : -1) :
                              (bottomBlock.position.x < blockToRotate.position.x ? 1 : -1);
 
+    var x1 = block1.position.x + 2 * invert * sign,
+        y1 = block1.position.y - 2 * invert,
+        x2 = block2.position.x + 1 * invert * sign,
+        y2 = block2.position.y - 1 * invert,
+        x3 = shape.getBlock3().position.x,
+        y3 = shape.getBlock3().position.y,
+        x4 = block4.position.x - 1 * invert * sign,
+        y4 = block4.position.y + 1 * invert;
+    
+    if (isPositionLegal(x1, y1, x2, y2, x3, y3, x4, y4)) {
+      rearrangeBlocks(shape, x1, y1, x2, y2, x3, y3, x4, y4);
+      shape.updateOrientation();
+    }
+
+    /*    
     block1.position.x +=  2 * invert * sign;
     block1.position.y += -2 * invert;
     block2.position.x +=  1 * invert * sign;
     block2.position.y += -1 * invert;
     block4.position.x += -1 * invert * sign;
     block4.position.y +=  1 * invert;
-
-	shape.updateOrientation();
+    shape.updateOrientation();
+    */
   }
   
   
@@ -357,14 +373,29 @@ var Tetrominoes = function()
     var sign = shape.orientation == orientation.UP || shape.orientation == orientation.DOWN ? 1 : -1;
     var invert = shape.orientation == orientation.UP || shape.orientation == orientation.RIGHT ? 1 : -1;
 
+    var x1 = block1.position.x - 1 * invert * sign,
+        y1 = block1.position.y + 1 * invert,
+        x2 = block2.position.x + 1 * invert,
+        y2 = block2.position.y + 1 * invert * sign,
+        x3 = shape.getBlock3().position.x,
+        y3 = shape.getBlock3().position.y,
+        x4 = block4.position.x - 1 * invert,
+        y4 = block4.position.y - 1 * invert * sign;
+
+    if (isPositionLegal(x1, y1, x2, y2, x3, y3, x4, y4)) {
+      rearrangeBlocks(shape, x1, y1, x2, y2, x3, y3, x4, y4);
+      shape.updateOrientation();
+    }
+
+    /*
     block1.position.x += -1 * invert * sign;
     block1.position.y +=  1 * invert;
     block2.position.x +=  1 * invert;
     block2.position.y +=  1 * invert * sign;
     block4.position.x += -1 * invert;
-    block4.position.y += -1 * invert * sign;    
-
-    shape.updateOrientation();
+    block4.position.y += -1 * invert * sign;
+    shape.updateOrientation();    
+    */
   }
 
 
@@ -377,14 +408,29 @@ var Tetrominoes = function()
     var sign = shape.orientation == orientation.UP || shape.orientation == orientation.DOWN ? 1 : -1;
     var invert = shape.orientation == orientation.UP || shape.orientation == orientation.RIGHT ? 1 : -1;
 
+    var x1 = block1.position.x + (sign == 1 ? 2 :  0) * invert,
+        y1 = block1.position.y + (sign == 1 ? 0 : -2) * invert,
+        x2 = block2.position.x + 1 * invert * sign,
+        y2 = block2.position.y - 1 * invert,
+        x3 = shape.getBlock3().position.x,
+        y3 = shape.getBlock3().position.y,
+        x4 = block4.position.x - 1 * invert,
+        y4 = block4.position.y - 1 * invert * sign;
+  
+    if (isPositionLegal(x1, y1, x2, y2, x3, y3, x4, y4)) {
+      rearrangeBlocks(shape, x1, y1, x2, y2, x3, y3, x4, y4);
+      shape.updateOrientation();
+    }
+    
+    /*
     block1.position.x += (sign == 1 ? 2 : 0) * invert;
     block1.position.y += (sign == 1 ? 0 : -2) * invert;
     block2.position.x +=  1 * invert * sign;
     block2.position.y += -1 * invert;
     block4.position.x += -1 * invert;
     block4.position.y += -1 * invert * sign;
-
     shape.updateOrientation();
+    */
   }
 
 
@@ -397,14 +443,30 @@ var Tetrominoes = function()
     var sign = shape.orientation == orientation.UP || shape.orientation == orientation.DOWN ? 1 : -1;
     var invert = shape.orientation == orientation.UP || shape.orientation == orientation.RIGHT ? 1 : -1;
 
+
+    var x1 = block1.position.x + (sign == 1 ?  0 : -2) * invert,
+        y1 = block1.position.y + (sign == 1 ? -2 :  0) * invert,
+        x2 = block2.position.x + 1 * invert * sign,
+        y2 = block2.position.y - 1 * invert,
+        x3 = shape.getBlock3().position.x,
+        y3 = shape.getBlock3().position.y,
+        x4 = block4.position.x + 1 * invert,
+        y4 = block4.position.y + 1 * invert * sign;
+  
+    if (isPositionLegal(x1, y1, x2, y2, x3, y3, x4, y4)) {
+      rearrangeBlocks(shape, x1, y1, x2, y2, x3, y3, x4, y4);
+      shape.updateOrientation();
+    }
+
+    /*
     block1.position.x += (sign == 1 ? 0 : -2) * invert;
     block1.position.y += (sign == 1 ? -2 : 0) * invert;
     block2.position.x +=  1 * invert * sign;
     block2.position.y += -1 * invert;
     block4.position.x +=  1 * invert;
     block4.position.y +=  1 * invert * sign;
-    
     shape.updateOrientation();
+    */
   }
 
   
@@ -427,16 +489,59 @@ var Tetrominoes = function()
     var sign = shape.orientation == orientation.UP || shape.orientation == orientation.DOWN ? 1 : -1;
     var invert = shape.orientation == orientation.UP || shape.orientation == orientation.RIGHT ? 1 : -1;
 
+    var x1 = block1.position.x + (sign == 1 ? x1 : x2) * invert,
+        y1 = block1.position.y + (sign == 1 ? y1 : y2) * invert,
+        x2 = block2.position.x - 1 * invert * sign,
+        y2 = block2.position.y + 1 * invert,
+        x3 = shape.getBlock3().position.x,
+        y3 = shape.getBlock3().position.y,
+        x4 = block4.position.x + 1 * invert * sign,
+        y4 = block4.position.y - 1 * invert;
+  
+    if (isPositionLegal(x1, y1, x2, y2, x3, y3, x4, y4)) {
+      rearrangeBlocks(shape, x1, y1, x2, y2, x3, y3, x4, y4);
+      shape.updateOrientation();
+    }
+    
+    /*
     block1.position.x += (sign == 1 ? x1 : x2) * invert;
     block1.position.y += (sign == 1 ? y1 : y2) * invert;
     block2.position.x += -1 * invert * sign;
     block2.position.y +=  1 * invert;
     block4.position.x +=  1 * invert * sign;
     block4.position.y += -1 * invert;
-
     shape.updateOrientation();
+    */
   }
   
+  
+  function isPositionLegal(x1, y1, x2, y2, x3, y3, x4, y4)
+  {
+    var isLegal = field.fieldArray[10+y1][x1] == 0 &&
+                  field.fieldArray[10+y2][x2] == 0 &&
+                  field.fieldArray[10+y3][x3] == 0 &&
+                  field.fieldArray[10+y4][x4] == 0;
+    return isLegal;
+  }
+  
+  
+  function rearrangeBlocks(shape, x1, y1, x2, y2, x3, y3, x4, y4)
+  {
+    var block1 = shape.getBlock1();
+    var block2 = shape.getBlock2();
+    var block3 = shape.getBlock3();
+    var block4 = shape.getBlock4();
+    
+    block1.position.x = x1;
+    block1.position.y = y1;
+    block2.position.x = x2;
+    block2.position.y = y2;
+    block3.position.x = x3;
+    block3.position.y = y3;
+    block4.position.x = x4;
+    block4.position.y = y4;
+  }
+
 
   return this;
 };

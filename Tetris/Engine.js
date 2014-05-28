@@ -1,5 +1,6 @@
 var hardcore = false;
 
+
 document.onkeydown = function(evt)
 {
   evt = evt || window.event;
@@ -87,6 +88,7 @@ function checkRows()
   } 
 }
 
+
 function removeRow(row)
 {
   updatePunkte();
@@ -112,17 +114,18 @@ function removeRow(row)
 }
 
 
-
 function fillArray()
 {
-  field.fieldArray[tet.shape.getBlock1().position.y+10][tet.shape.getBlock1().position.x]=tet.shape.getBlock1();
-  field.fieldArray[tet.shape.getBlock2().position.y+10][tet.shape.getBlock2().position.x]=tet.shape.getBlock2();
-  field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x]=tet.shape.getBlock3();
-  field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x]=tet.shape.getBlock4();
+  field.fieldArray[tet.shape.getBlock1().position.y+10][tet.shape.getBlock1().position.x] = tet.shape.getBlock1();
+  field.fieldArray[tet.shape.getBlock2().position.y+10][tet.shape.getBlock2().position.x] = tet.shape.getBlock2();
+  field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x] = tet.shape.getBlock3();
+  field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x] = tet.shape.getBlock4();
 
   for (var x = 19; x >= 0; --x) {
-    var line = (x<10?" ":"") + x + "| "; 
-    for(var y = 0; y < 10; ++y) { line += field.fieldArray[x][y] + " "; } 
+    var line = (x<10 ? " " : "") + x + "| "; 
+    for (var y = 0; y < 10; ++y) {
+      line += field.fieldArray[x][y] + " ";
+    } 
     console.log(line);
   } 
 }

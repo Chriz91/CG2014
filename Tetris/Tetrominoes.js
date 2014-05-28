@@ -326,7 +326,6 @@ var Tetrominoes = function()
   
   function rotateLineShape(shape)
   {
-    // Im Original kippt er immer nur zwischen langem Teil rechts und oben; hier dreht er sich richtig
     var block1 = shape.getBlock1();
     var block2 = shape.getBlock2();
     var block4 = shape.getBlock4();
@@ -355,98 +354,20 @@ var Tetrominoes = function()
     var block2 = shape.getBlock2();
     var block4 = shape.getBlock4();
 
-    var blockToRotate = shape.getBlock3();
+    var sign = shape.orientation == orientation.UP || shape.orientation == orientation.DOWN ? 1 : -1;
+    var invert = shape.orientation == orientation.UP || shape.orientation == orientation.RIGHT ? 1 : -1;
 
-    var x1 = block1.position.x,
-        x2 = block2.position.x,
-        x4 = block4.position.x;
+    block1.position.x += -1 * invert * sign;
+    block1.position.y +=  1 * invert;
+    block2.position.x +=  1 * invert;
+    block2.position.y +=  1 * invert * sign;
+    block4.position.x += -1 * invert;
+    block4.position.y += -1 * invert * sign;    
 
-    var y1 = block1.position.y,
-        y2 = block2.position.y,
-        y4 = block4.position.y;
-
-    if (y1 == y2) { // T steht waagrecht, block4 ist einzelner Block
-      if (block4.position.y < blockToRotate.position.y) {
-        moveRightBlockUp(x1 > x2 ? block1 : block2); // T steht richtig rum, der rechte Block muss nach oben
-      }
-      else {
-        moveLeftBlockDown(x1 < x2 ? block1 : block2); // T steht auf dem Kopf, der linke Block muss nach unten
-      }
-    }
-    else if (y1 == y4) { // T steht waagrecht, block2 ist einzelner Block
-      if (block2.position.y < blockToRotate.position.y) {
-        moveRightBlockUp(x1 > x4 ? block1 : block4); // T steht richtig rum, der rechte Block muss nach oben
-      }
-      else {
-        moveLeftBlockDown(x1 < x4 ? block1 : block4); // T steht auf dem Kopf, der linke Block muss nach unten
-      }
-    }
-    else if (y2 == y4) { // T steht waagrecht, block1 ist einzelner Block
-      if (block1.position.y < blockToRotate.position.y) {
-        moveRightBlockUp(x2 > x4 ? block2 : block4); // T steht richtig rum, der rechte Block muss nach oben
-      }
-      else {
-        moveLeftBlockDown(x2 < x4 ? block2 : block4); // T steht auf dem Kopf, der linke Block muss nach unten
-      }
-    }
-    
-    else {
-      // T steht senkrecht
-      if (x1 == x2) { // T steht waagrecht, block4 ist einzelner Block
-        if (block4.position.x < blockToRotate.position.x) {
-          moveBottomBlockRight(y1 < y2 ? block1 : block2); // der einzelne Block ist links, der untere Block muss nach rechts
-        }
-        else {
-          moveUpperBlockLeft(y1 > y2 ? block1 : block2); // der einzelne Block ist rechts, der obere Block muss nach links
-        }
-      }
-      else if (x1 == x4) { // T steht waagrecht, block2 ist einzelner Block
-        if (block2.position.x < blockToRotate.position.x) {
-          moveBottomBlockRight(y1 < y4 ? block1 : block4); // der einzelne Block ist links, der untere Block muss nach rechts
-        }
-        else {
-          moveUpperBlockLeft(y1 > y4 ? block1 : block4); // der einzelne Block ist rechts, der obere Block muss nach links
-        }
-      }
-      else if (x2 == x4) { // T steht waagrecht, block1 ist einzelner Block
-        if (block1.position.x < blockToRotate.position.x) {
-          moveBottomBlockRight(y2 < y4 ? block2 : block4); // der einzelne Block ist links, der untere Block muss nach rechts
-        }
-        else {
-          moveUpperBlockLeft(y2 > y4 ? block2 : block4); // der einzelne Block ist rechts, der obere Block muss nach links
-        }
-      }
-    }
-	
-	shape.updateOrientation();
+    shape.updateOrientation();
   }
 
-  // Hilfsfunktionen
-  function moveRightBlockUp(block)
-  {
-    block.position.x += -1;
-    block.position.y += 1;
-  }
 
-  function moveLeftBlockDown(block)
-  {
-    block.position.x += 1;
-    block.position.y += -1;
-  }
-
-  function moveBottomBlockRight(block)
-  {
-    block.position.x += 1;
-    block.position.y += 1;
-  }
-
-  function moveUpperBlockLeft(block)
-  {
-    block.position.x += -1;
-    block.position.y += -1;
-  }
-  
-  
   function rotateZShape(shape)
   {
     var block1 = shape.getBlock1();

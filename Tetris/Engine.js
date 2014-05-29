@@ -2,10 +2,8 @@ var hardcore = false;
 var texture = THREE.ImageUtils.loadTexture('textures/explosion.jpg')
 var endtexture = THREE.ImageUtils.loadTexture('textures/youlose.jpg')
 var timeoutremove;
-var geometry = new THREE.CubeGeometry(10, 1, 1); 
-var material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
-var line = new THREE.Mesh(geometry,material);
-var camerarotation;
+
+
 
 document.onkeydown = function(evt)
 {
@@ -45,9 +43,9 @@ function moveBlock()
 	var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
 	var endblock = new THREE.Mesh(geometry,material);
 	  
-	endblock.position.x = 4.5;
-	endblock.position.y = 10+OffsetY;
-	endblock.position.z = 2;
+	  endblock.position.x = 4.5;
+	  endblock.position.y = 10+OffsetY;
+	  endblock.position.z = 2;
 	camera.rotation.z = 0;
 	
 	scene.add(endblock);
@@ -123,58 +121,69 @@ function checkRows()
 
 function blinkRow(row)
 {
-  line.position.x = 4.5;
-  line.position.y = row+OffsetY;
-  line.position.z = 2;
+	var geometry = new THREE.CubeGeometry(10, 1, 1); 
+	var material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
+	var line = new THREE.Mesh(geometry,material);
 
-  scene.add(line);
-  update();
-  //clearTimeout(timeoutadd);
+	
+	  line.position.x = 4.5;
+	  line.position.y = row+OffsetY;
+	  line.position.z = 2;
+	
+	
+
+						scene.add(line);
+						update();
+						//clearTimeout(timeoutadd);
 						
-  timeoutremove = setTimeout(
-      function()
-      {
-        scene.remove(line);
-        update();	
-        
-        clearTimeout(timeoutremove);
-      }, 150);
-
-  return;
+		timeoutremove= setTimeout(
+				function()
+				{
+					scene.remove(line);
+					update();	
+					
+					this.clearTimeout(timeoutremove);
+				}, 150);
+		
+return;
 }
-
 
 function removeRow(row)
 {
   updatePunkte();
   
-  //laesst unterste zu verschwindende Reihe rot blinken
+  //l�sst unterste zu verschwindende Reihe rot blinken
   blinkRow(row);
-
-  for (var x = 0; x < 10; ++x) {
+  
+  
+  for (var x = 0; x < 10; ++x) 
+  {
     scene.remove(field.fieldArray[row][x]);
   }
   
   remove(row);
+ 
+  
+  
+ 
 }
-
 
 function remove(row)
 {
-  for (var x = row; x < 20; ++x) { // alle Zeilen über row 1 runterschieben
-    for (var y = 0; y < 10; ++y) { // Zeile durchgehen
-      if (x < 19) {
-        field.fieldArray[x][y] = field.fieldArray[x+1][y];
-        // Koordinaten der Blöcke ändern
-        if (field.fieldArray[x][y] != 0) {
-          field.fieldArray[x][y].position.y -= 1;
-        }
-      }    
-      else {
-        field.fieldArray[x][y] = 0;
-      }
-    }
-  }	
+	  for (var x = row; x < 20; ++x) { // alle Zeilen über row 1 runterschieben
+		    for (var y = 0; y < 10; ++y) { // Zeile durchgehen
+		      if (x < 19) {
+		        field.fieldArray[x][y] = field.fieldArray[x+1][y];
+		        // Koordinaten der Blöcke ändern
+		        if (field.fieldArray[x][y] != 0) {
+		          field.fieldArray[x][y].position.y -= 1;
+		        }
+		      }    
+		      else {
+		        field.fieldArray[x][y] = 0;
+		      }
+		    }
+		  }	
 }
 
 function fillArray()
@@ -183,14 +192,14 @@ function fillArray()
   field.fieldArray[tet.shape.getBlock2().position.y+10][tet.shape.getBlock2().position.x] = tet.shape.getBlock2();
   field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x] = tet.shape.getBlock3();
   field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x] = tet.shape.getBlock4();
-/*
+
   for (var x = 19; x >= 0; --x) {
     var line = (x<10 ? " " : "") + x + "| "; 
     for (var y = 0; y < 10; ++y) {
       line += field.fieldArray[x][y] + " ";
     } 
     console.log(line);
-  }*/ 
+  } 
 }
 
 

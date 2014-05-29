@@ -1,6 +1,6 @@
 var hardcore = false;
 var texture = THREE.ImageUtils.loadTexture('textures/explosion.jpg')
-
+var endtexture = THREE.ImageUtils.loadTexture('textures/youlose.jpg')
 var timeoutremove;
 
 
@@ -37,6 +37,19 @@ function moveBlock()
   if (hardcore == true){
     if (field.fieldArray[19][5] != 0) {
       boolgame= false;
+      
+
+  	var geometry = new THREE.CubeGeometry(10, 20, 1); 
+	var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
+	var endblock = new THREE.Mesh(geometry,material);
+	  
+	  endblock.position.x = 4.5;
+	  endblock.position.y = 10+OffsetY;
+	  endblock.position.z = 2;
+	  
+	scene.add(endblock);
+	
+	update();
       alert("Spiel zuende");
 	}
     else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState() == true) {
@@ -57,6 +70,18 @@ function moveBlock()
   {
     if (field.fieldArray[19][5] != 0) {
       boolgame= false;
+
+    	var geometry = new THREE.CubeGeometry(10, 20, 1); 
+  	var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
+  	var endblock = new THREE.Mesh(geometry,material);
+  	  
+  	  endblock.position.x = 4.5;
+  	  endblock.position.y = 10+OffsetY;
+  	  endblock.position.z = 2;
+  	  
+  	scene.add(endblock);
+  	
+  	update();
       alert("Spiel zuende");
     }
     else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {

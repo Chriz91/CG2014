@@ -41,19 +41,18 @@ function moveBlock()
       boolgame= false;
       
 
-  	var geometry = new THREE.CubeGeometry(10, 20, 1); 
-	var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
-	var endblock = new THREE.Mesh(geometry,material);
+      var geometry = new THREE.CubeGeometry(10, 20, 1); 
+      var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
+      var endblock = new THREE.Mesh(geometry,material);
 	  
 	  endblock.position.x = 4.5;
 	  endblock.position.y = 10+OffsetY;
 	  endblock.position.z = 2;
-	camera.rotation.z = 0;
+	  camera.rotation.z = 0;
 	
-	scene.add(endblock);
+	  scene.add(endblock);
 	
-	update();
-      
+	  update();
 	}
     else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState() == true) {
       tet.changeY(-1);
@@ -74,19 +73,18 @@ function moveBlock()
   {
     if (field.fieldArray[19][5] != 0) {
       boolgame= false;
+  
+      var geometry = new THREE.CubeGeometry(10, 20, 1); 
+      var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
+      var endblock = new THREE.Mesh(geometry,material);
+    	  
+      endblock.position.x = 4.5;
+      endblock.position.y = 10+OffsetY;
+      endblock.position.z = 2;
+    	  
+      scene.add(endblock);
 
-    	var geometry = new THREE.CubeGeometry(10, 20, 1); 
-  	var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
-  	var endblock = new THREE.Mesh(geometry,material);
-  	  
-  	  endblock.position.x = 4.5;
-  	  endblock.position.y = 10+OffsetY;
-  	  endblock.position.z = 2;
-  	  
-  	scene.add(endblock);
-  	
-  	update();
-      
+      update();
     }
     else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
       tet.changeY(-1);
@@ -121,40 +119,36 @@ function checkRows()
   } 
 }
 
+
 function blinkRow(row)
 {
-
-
-	
-	  line.position.x = 4.5;
-	  line.position.y = row+OffsetY;
-	  line.position.z = 2;
-	
-	
-
-						scene.add(line);
-						update();
-						//clearTimeout(timeoutadd);
+  line.position.x = 4.5;
+  line.position.y = row+OffsetY;
+  line.position.z = 2;
+  
+  machscene.add(line);
+  update();
+  //clearTimeout(timeoutadd);
 						
-		timeoutremove= setTimeout(
-				function()
-				{
-					scene.remove(line);
-					update();	
-					
-					clearTimeout(timeoutremove);
-				}, 150);
+  timeoutremove= setTimeout(
+      function()
+      {
+        scene.remove(line);
+        update();	
+        
+        clearTimeout(timeoutremove);
+      }, 150);
 		
-return;
+  return;
 }
+
 
 function removeRow(row)
 {
   updatePunkte();
   
-  //l�sst unterste zu verschwindende Reihe rot blinken
+  //laesst unterste zu verschwindende Reihe rot blinken
   blinkRow(row);
-  
   
   for (var x = 0; x < 10; ++x) 
   {
@@ -162,29 +156,27 @@ function removeRow(row)
   }
   
   remove(row);
- 
-  
-  
- 
 }
+
 
 function remove(row)
 {
-	  for (var x = row; x < 20; ++x) { // alle Zeilen über row 1 runterschieben
-		    for (var y = 0; y < 10; ++y) { // Zeile durchgehen
-		      if (x < 19) {
-		        field.fieldArray[x][y] = field.fieldArray[x+1][y];
-		        // Koordinaten der Blöcke ändern
-		        if (field.fieldArray[x][y] != 0) {
-		          field.fieldArray[x][y].position.y -= 1;
-		        }
-		      }    
-		      else {
-		        field.fieldArray[x][y] = 0;
-		      }
-		    }
-		  }	
+  for (var x = row; x < 20; ++x) { // alle Zeilen über row 1 runterschieben
+    for (var y = 0; y < 10; ++y) { // Zeile durchgehen
+      if (x < 19) {
+        field.fieldArray[x][y] = field.fieldArray[x+1][y];
+        // Koordinaten der Blöcke ändern
+        if (field.fieldArray[x][y] != 0) {
+          field.fieldArray[x][y].position.y -= 1;
+        }
+      }    
+      else {
+        field.fieldArray[x][y] = 0;
+      }
+    }
+  }	
 }
+
 
 function fillArray()
 {
@@ -193,13 +185,7 @@ function fillArray()
   field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x] = tet.shape.getBlock3();
   field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x] = tet.shape.getBlock4();
 
-  for (var x = 19; x >= 0; --x) {
-    var line = (x<10 ? " " : "") + x + "| "; 
-    for (var y = 0; y < 10; ++y) {
-      line += field.fieldArray[x][y] + " ";
-    } 
-    console.log(line);
-  } 
+  printField();
 }
 
 
@@ -214,4 +200,17 @@ function setModeFalse()
 {
   hardcore = false;
   update();
+}
+
+
+function printField()
+{
+  for (var x = 19; x >= 0; --x) {
+    var line = (x<10 ? " " : "") + x + "| "; 
+    for (var y = 0; y < 10; ++y) {
+      //line += field.fieldArray[x][y] + " ";
+      line += (field.fieldArray[x][y] != 0 ? 1 : 0) + " ";
+    } 
+    console.log(line);
+  }
 }

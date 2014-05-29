@@ -1,8 +1,8 @@
 var hardcore = false;
-var geometry = new THREE.CubeGeometry(10, 1, 1); 
-var material = new THREE.MeshBasicMaterial( {color: 0xFF0000, side: THREE.DoubleSide} );
-var line = new THREE.Mesh(geometry,material);
+var texture = THREE.ImageUtils.loadTexture('textures/explosion.jpg')
+
 var timeoutremove;
+
 
 
 document.onkeydown = function(evt)
@@ -95,6 +95,10 @@ function checkRows()
 function blinkRow(row)
 {
 
+	var geometry = new THREE.CubeGeometry(10, 1, 1); 
+	var material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
+	var line = new THREE.Mesh(geometry,material);
+	
 	  line.position.x = 4.5;
 	  line.position.y = row+OffsetY;
 	  line.position.z = 2;
@@ -121,7 +125,10 @@ function removeRow(row)
 {
   updatePunkte();
   
+  //lässt unterste zu verschwindende Reihe rot blinken
   blinkRow(row);
+  
+  
   for (var x = 0; x < 10; ++x) 
   {
     scene.remove(field.fieldArray[row][x]);

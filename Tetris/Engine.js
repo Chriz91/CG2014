@@ -152,7 +152,7 @@ function removeRow(row)
 {
   updatePunkte();
   
-  //lässt unterste zu verschwindende Reihe rot blinken
+  //lï¿½sst unterste zu verschwindende Reihe rot blinken
   blinkRow(row);
   
   

@@ -2,10 +2,8 @@ var hardcore = false;
 var texture = THREE.ImageUtils.loadTexture('textures/explosion.jpg')
 var endtexture = THREE.ImageUtils.loadTexture('textures/youlose.jpg')
 var timeoutremove;
-var geometry = new THREE.CubeGeometry(10, 1, 1); 
-var material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
-var line = new THREE.Mesh(geometry,material);
-var camerarotation;
+
+
 
 document.onkeydown = function(evt)
 {
@@ -123,7 +121,9 @@ function checkRows()
 
 function blinkRow(row)
 {
-
+	var geometry = new THREE.CubeGeometry(10, 1, 1); 
+	var material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
+	var line = new THREE.Mesh(geometry,material);
 
 	
 	  line.position.x = 4.5;
@@ -142,7 +142,7 @@ function blinkRow(row)
 					scene.remove(line);
 					update();	
 					
-					clearTimeout(timeoutremove);
+					this.clearTimeout(timeoutremove);
 				}, 150);
 		
 return;

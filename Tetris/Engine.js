@@ -1,6 +1,7 @@
 var hardcore = false;
-
-var timeoutadd;
+var geometry = new THREE.CubeGeometry(10, 1, 1); 
+var material = new THREE.MeshBasicMaterial( {color: 0xFF0000, side: THREE.DoubleSide} );
+var line = new THREE.Mesh(geometry,material);
 var timeoutremove;
 
 
@@ -93,12 +94,10 @@ function checkRows()
 
 function blinkRow(row)
 {
-	var geometry = new THREE.CubeGeometry(10, 1, 1); 
-	var material = new THREE.MeshBasicMaterial( {color: 0xFF0000, side: THREE.DoubleSide} );
-	var line = new THREE.Mesh(geometry,material);
+
 	  line.position.x = 4.5;
 	  line.position.y = row+OffsetY;
-	  line.position.z = 1;
+	  line.position.z = 2;
 	
 	
 
@@ -110,9 +109,9 @@ function blinkRow(row)
 				function()
 				{
 					scene.remove(line);
-					update();
-					 clearTimeout(timeoutremove);
-					 remove(row);
+					update();	
+					
+					clearTimeout(timeoutremove);
 				}, 150);
 		
 return;
@@ -122,13 +121,15 @@ function removeRow(row)
 {
   updatePunkte();
   
+  blinkRow(row);
   for (var x = 0; x < 10; ++x) 
   {
     scene.remove(field.fieldArray[row][x]);
   }
   
+  remove(row);
+ 
   
-  blinkRow(row);
   
  
 }

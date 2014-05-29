@@ -35,16 +35,20 @@ function updatePunkte()
 function updateLevel()
 {
   punkte = 0;
+  if(level <= 5)
+	  {
   level +=1;
+  updateSchwierigkeit();
+	  }
   document.getElementById("punkte").value = punkte;
   document.getElementById("level").value = level;
-  updateSchwierigkeit();
+  
 }
 
 
 function updateSchwierigkeit()
 {
-  speedvalue -= 150;
+  speedvalue -= 200;
 }
 
 
@@ -54,4 +58,6 @@ function newGame()
   punkte = 0;
   level = 1;
   speedvalue= 1000;
+  document.getElementById("punkte").value = punkte;
+  document.getElementById("level").value = level;
 }

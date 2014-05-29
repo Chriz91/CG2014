@@ -5,7 +5,7 @@ var timeoutremove;
 var geometry = new THREE.CubeGeometry(10, 1, 1); 
 var material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
 var line = new THREE.Mesh(geometry,material);
-
+var camerarotation;
 
 document.onkeydown = function(evt)
 {
@@ -48,15 +48,17 @@ function moveBlock()
 	  endblock.position.x = 4.5;
 	  endblock.position.y = 10+OffsetY;
 	  endblock.position.z = 2;
-	  
+	camera.rotation.z = 0;
+	
 	scene.add(endblock);
 	
 	update();
-      alert("Spiel zuende");
+      
 	}
     else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState() == true) {
       tet.changeY(-1);
       setTimeout("moveBlock()", speedvalue);
+      camerarotation++;
       camera.rotation.z += 15*Math.PI/180;
     }
     else {
@@ -84,7 +86,7 @@ function moveBlock()
   	scene.add(endblock);
   	
   	update();
-      alert("Spiel zuende");
+      
     }
     else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
       tet.changeY(-1);

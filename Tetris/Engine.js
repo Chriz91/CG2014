@@ -1,5 +1,8 @@
 var hardcore = false;
 
+var timeoutadd;
+var timeoutremove;
+
 
 document.onkeydown = function(evt)
 {
@@ -88,31 +91,65 @@ function checkRows()
   } 
 }
 
+function blinkRow(row)
+{
+	var geometry = new THREE.CubeGeometry(10, 1, 1); 
+	var material = new THREE.MeshBasicMaterial( {color: 0xFF0000, side: THREE.DoubleSide} );
+	var line = new THREE.Mesh(geometry,material);
+	  line.position.x = 4.5;
+	  line.position.y = row+OffsetY;
+	  line.position.z = 1;
+	
+	
+
+						scene.add(line);
+						update();
+						//clearTimeout(timeoutadd);
+						
+		timeoutremove= setTimeout(
+				function()
+				{
+					scene.remove(line);
+					update();
+					 clearTimeout(timeoutremove);
+					 remove(row);
+				}, 150);
+		
+return;
+}
 
 function removeRow(row)
 {
   updatePunkte();
-
-  for (var x = 0; x < 10; ++x) {
+  
+  for (var x = 0; x < 10; ++x) 
+  {
     scene.remove(field.fieldArray[row][x]);
   }
   
-  for (var x = row; x < 20; ++x) { // alle Zeilen über row 1 runterschieben
-    for (var y = 0; y < 10; ++y) { // Zeile durchgehen
-      if (x < 19) {
-        field.fieldArray[x][y] = field.fieldArray[x+1][y];
-        // Koordinaten der Blöcke ändern
-        if (field.fieldArray[x][y] != 0) {
-          field.fieldArray[x][y].position.y -= 1;
-        }
-      }    
-      else {
-        field.fieldArray[x][y] = 0;
-      }
-    }
-  }
+  
+  blinkRow(row);
+  
+ 
 }
 
+function remove(row)
+{
+	  for (var x = row; x < 20; ++x) { // alle Zeilen über row 1 runterschieben
+		    for (var y = 0; y < 10; ++y) { // Zeile durchgehen
+		      if (x < 19) {
+		        field.fieldArray[x][y] = field.fieldArray[x+1][y];
+		        // Koordinaten der Blöcke ändern
+		        if (field.fieldArray[x][y] != 0) {
+		          field.fieldArray[x][y].position.y -= 1;
+		        }
+		      }    
+		      else {
+		        field.fieldArray[x][y] = 0;
+		      }
+		    }
+		  }	
+}
 
 function fillArray()
 {

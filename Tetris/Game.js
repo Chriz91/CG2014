@@ -1,3 +1,5 @@
+var tet1;
+var tet2;
 var tet;
 var boolgame;
 var speedvalue = 1000;
@@ -9,14 +11,22 @@ function game()
 {
   var boolblock;
   boolgame = true;
-  newTet();
+  tet = new Tetrominoes();
+  tet2 = new Tetrominoes();
+  tet2.changeX(10);
+  moveBlock();
 }
 
 
 function newTet()
-{
-  tet = new Tetrominoes();
-  moveBlock();
+{	
+	
+	tet = Object.create(tet2);
+	tet.shape.setX(-10);
+	tet.setState(true);
+	tet2 = new Tetrominoes();
+	tet2.shape.setX(10);
+	moveBlock();
 }
 
 

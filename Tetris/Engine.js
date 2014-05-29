@@ -126,7 +126,7 @@ function blinkRow(row)
   line.position.y = row+OffsetY;
   line.position.z = 2;
   
-  machscene.add(line);
+  scene.add(line);
   update();
   //clearTimeout(timeoutadd);
 						

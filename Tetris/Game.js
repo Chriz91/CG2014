@@ -9,6 +9,7 @@ var level = 1;
 
 function game()
 {
+	var T = new TetrisLetters();
   var boolblock;
   boolgame = true;
   tet = new Tetrominoes();

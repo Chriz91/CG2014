@@ -172,7 +172,6 @@ function fillArray()
 
 function setModeTrue()
 {
- camera.rotation.z = 0;
   hardcore = true;
   update();
 }
@@ -181,6 +180,7 @@ function setModeTrue()
 function setModeFalse()
 {
   hardcore = false;
+  camera.rotation.z = 0;
   update();
 }
 

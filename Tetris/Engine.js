@@ -40,6 +40,7 @@ document.onkeydown = function(evt)
 
 function moveBlock()
 {
+
   debug("Enter moveBlock()");
   if (field.fieldArray[19][5] != 0) {
     boolgame= false;

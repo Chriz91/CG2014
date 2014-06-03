@@ -10,6 +10,12 @@ var field;
 
 function update()
 {
+	Tetr.T.rotation.y += 1*Math.PI/180;
+	Tetr.E.rotation.y -= 1*Math.PI/180;
+	Tetr.ST.rotation.y += 1*Math.PI/180;
+	Tetr.R.rotation.y -= 1*Math.PI/180;
+	Tetr.I.rotation.y += 1*Math.PI/180;
+	Tetr.S.rotation.y -= 1*Math.PI/180;
   requestAnimationFrame(update);
   render();
 }

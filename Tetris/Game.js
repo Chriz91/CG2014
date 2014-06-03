@@ -5,11 +5,11 @@ var boolgame;
 var speedvalue = 1000;
 var punkte = 0;
 var level = 1;
-
+var Tetr 
 
 function game()
 {
-	var T = new TetrisLetters();
+ Tetr= new TetrisLetters();
   var boolblock;
   boolgame = true;
   tet = new Tetrominoes();

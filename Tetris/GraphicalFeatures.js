@@ -1,3 +1,5 @@
+
+
 var TetrisLetters = function()
 {
 	var material = new THREE.MeshBasicMaterial( {map: THREE.ImageUtils.loadTexture('textures/explosion.jpg'), side: THREE.DoubleSide} );
@@ -7,7 +9,7 @@ var TetrisLetters = function()
 	var mainR = new THREE.Geometry();
 	var mainI = new THREE.Geometry();
 	var mainS = new THREE.Geometry();
-
+	
 	var T =[];
 	var E =[];
 	var ST =[];
@@ -37,12 +39,12 @@ var TetrisLetters = function()
 	T[4].position.x = -2;
 	THREE.GeometryUtils.merge(mainT, T[4]);
 	
-	var T = new THREE.Mesh(mainT);
+	this.T = new THREE.Mesh(mainT, material);
 	
-	T.position.x = -5;
-	T.position.y = 12;
+	this.T.position.x = -5;
+	this.T.position.y = 12;
 
-
+	scene.add(this.T);
 	
 	E[0]= new THREE.Mesh(cubegeometry);
 	THREE.GeometryUtils.merge(mainE, E[0]);
@@ -69,12 +71,12 @@ var TetrisLetters = function()
 	E[5].position.y = -0.5;
 	E[5].position.x = 2;
 	THREE.GeometryUtils.merge(mainE, E[5]);
-	var E = new THREE.Mesh(mainE);
+	this.E = new THREE.Mesh(mainE, material);
 	
-	E.position.x = -1;
-	E.position.y = 12;
+	this.E.position.x = -1;
+	this.E.position.y = 12;
 	
-
+	scene.add(this.E);
 	
 	ST[0]= new THREE.Mesh(cubegeometry);
 	THREE.GeometryUtils.merge(mainST, ST[0]);
@@ -97,12 +99,13 @@ var TetrisLetters = function()
 	ST[4].position.x = -2;
 	THREE.GeometryUtils.merge(mainST, ST[4]);
 	
-	var ST = new THREE.Mesh(mainST);
+	this.ST = new THREE.Mesh(mainST, material);
 	
-	ST.position.x = 5;
-	ST.position.y = 12;
+	this.ST.position.x = 5;
+	this.ST.position.y = 12;
 
-
+	scene.add(this.ST);
+	
 	R[0]= new THREE.Mesh(new THREE.CubeGeometry(1,2,2));
 	THREE.GeometryUtils.merge(mainR, R[0]);
 	
@@ -143,12 +146,12 @@ var TetrisLetters = function()
 	R[8].position.y = -0.5;
 	R[8].position.x = 3;
 	THREE.GeometryUtils.merge(mainR, R[8]);
-	var R = new THREE.Mesh(mainR);
+	this.R = new THREE.Mesh(mainR, material);
 	
-	R.position.x = 9;
-	R.position.y = 12;
+	this.R.position.x = 9;
+	this.R.position.y = 12;
 	
-
+	scene.add(this.R);
 	
 	I[0] = new THREE.Mesh(cubegeometry);
 	THREE.GeometryUtils.merge(mainI, I[0]);
@@ -161,12 +164,12 @@ var TetrisLetters = function()
 	I[2].position.y = 4;
 	THREE.GeometryUtils.merge(mainI, I[2]);
 	
-	var I = new THREE.Mesh(mainI);
+	this.I = new THREE.Mesh(mainI, material);
 	
-	I.position.x = 14.5;
-	I.position.y = 12;
+	this.I.position.x = 14.5;
+	this.I.position.y = 12;
 	
-
+	scene.add(this.I);
 	
 	S[0] = new THREE.Mesh(new THREE.CubeGeometry(1,1,2));
 	S[0].position.y = -0.5;
@@ -186,22 +189,24 @@ var TetrisLetters = function()
 	S[3].position.x = 2;
 	THREE.GeometryUtils.merge(mainS, S[3]);
 	
-	var S = new THREE.Mesh(mainS);
+	this.S = new THREE.Mesh(mainS, material);
 	
-	S.position.x = 17;
-	S.position.y = 12;
+	this.S.position.x = 17;
+	this.S.position.y = 12;
 	
-	var tetris = new THREE.Geometry();;
-	THREE.GeometryUtils.merge(tetris, T);
-	THREE.GeometryUtils.merge(tetris, E);
-	THREE.GeometryUtils.merge(tetris, ST);
-	THREE.GeometryUtils.merge(tetris, R);
-	THREE.GeometryUtils.merge(tetris, I);
-	THREE.GeometryUtils.merge(tetris, S);
+	scene.add(this.S);
 	
-	var Tetris = new THREE.Mesh(tetris, material);
-	
-	Tetris.position.x -= 2;
-	scene.add(Tetris);
-	
+//	var tetris = new THREE.Geometry();;
+//	THREE.GeometryUtils.merge(tetris, T);
+//	THREE.GeometryUtils.merge(tetris, E);
+//	THREE.GeometryUtils.merge(tetris, ST);
+//	THREE.GeometryUtils.merge(tetris, R);
+//	THREE.GeometryUtils.merge(tetris, I);
+//	THREE.GeometryUtils.merge(tetris, S);
+//	
+//	var Tetris = new THREE.Mesh(tetris, material);
+//	
+//	Tetris.position.x -= 2;
+//	scene.add(Tetris);
+	return this;
 }

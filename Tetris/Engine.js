@@ -57,7 +57,6 @@ function moveBlock()
     else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState() == true) {
       tet.changeY(-1);
       setTimeout("moveBlock()", speedvalue);
-      camerarotation++;
       camera.rotation.z += 15*Math.PI/180;
     }
     else {
@@ -191,6 +190,7 @@ function fillArray()
 
 function setModeTrue()
 {
+ camera.rotation.z = 0;
   hardcore = true;
   update();
 }

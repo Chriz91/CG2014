@@ -2,9 +2,7 @@ var hardcore = false;
 var texture = THREE.ImageUtils.loadTexture('textures/explosion.jpg')
 var endtexture = THREE.ImageUtils.loadTexture('textures/youlose.jpg')
 var timeoutremove;
-var geometry = new THREE.CubeGeometry(10, 1, 1); 
-var material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
-var line = new THREE.Mesh(geometry,material);
+
 var yupCounter = 0;
 var ydownCounter = 15;
 document.onkeydown = function(evt)
@@ -99,22 +97,36 @@ function checkRows()
 
 function blinkRow(row)
 {
-  line.position.x = 4.5;
-  line.position.y = row+OffsetY;
-  line.position.z = 2;
-  
-  scene.add(line);
+	var mesharray = [];
+	var test = new THREE.Geometry();
+	for (var i=0;i<10;i++)	{
+		
+	
+	
+	
+	mesharray[i] = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+	mesharray[i].position.x = i;
+	mesharray[i].position.y = row+OffsetY;
+	mesharray[i].position.z = 1;
+	
+	THREE.GeometryUtils.merge(test, mesharray[i]);
+	}
+	var meshO = new THREE.Mesh(test, new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} ));
+
+
+  scene.add(meshO);
   update();
-  //clearTimeout(timeoutadd);
+
                         
-  timeoutremove= setTimeout(
+  var timeoutremove= setTimeout(
       function()
       {
-        scene.remove(line);
+        scene.remove(meshO);
         update();   
         
         clearTimeout(timeoutremove);
-      }, 150);
+      }, 250);
+        
         
   return;
 }

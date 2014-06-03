@@ -36,66 +36,37 @@ document.onkeydown = function(evt)
 
 function moveBlock()
 {
-  if (hardcore == true){
-    if (field.fieldArray[19][5] != 0) {
-      boolgame= false;
-      
+  if (field.fieldArray[19][5] != 0) {
+    boolgame= false;
 
-      var geometry = new THREE.CubeGeometry(10, 20, 1); 
-      var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
-      var endblock = new THREE.Mesh(geometry,material);
-	  
-	  endblock.position.x = 4.5;
-	  endblock.position.y = 10+OffsetY;
-	  endblock.position.z = 2;
-	  camera.rotation.z = 0;
-	
-	  scene.add(endblock);
-	
-	  update();
-	}
-    else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState() == true) {
-      tet.changeY(-1);
-      setTimeout("moveBlock()", speedvalue);
+    var geometry = new THREE.CubeGeometry(10, 20, 1); 
+    var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
+    var endblock = new THREE.Mesh(geometry,material);
+      
+    endblock.position.x = 4.5;
+    endblock.position.y = 10+OffsetY;
+    endblock.position.z = 2;
+    if (hardcore == true) {
+      camera.rotation.z = 0;
+    }
+    
+    scene.add(endblock);
+    
+    update();
+  }
+  else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState() == true) {
+    tet.changeY(-1);
+    setTimeout("moveBlock()", speedvalue);
+    if (hardcore == true) {
       camera.rotation.z += 15*Math.PI/180;
     }
-    else {
-      if (boolgame == true) {
-        tet.setState(false);
-        fillArray();
-        checkRows();
-        newTet();
-      }
-    }
   }
-  else
-  {
-    if (field.fieldArray[19][5] != 0) {
-      boolgame= false;
-  
-      var geometry = new THREE.CubeGeometry(10, 20, 1); 
-      var material = new THREE.MeshBasicMaterial( {map: endtexture, side: THREE.DoubleSide} );
-      var endblock = new THREE.Mesh(geometry,material);
-    	  
-      endblock.position.x = 4.5;
-      endblock.position.y = 10+OffsetY;
-      endblock.position.z = 2;
-    	  
-      scene.add(endblock);
-
-      update();
-    }
-    else if (tet.shape.getMinY() > 0.5 + OffsetY && tet.getState()==true) {
-      tet.changeY(-1);
-      setTimeout("moveBlock()", speedvalue);
-    }
-    else {
-      if (boolgame == true) {
-        tet.setState(false);
-        fillArray();
-        checkRows();
-        newTet();
-	  }
+  else {
+    if (boolgame == true) {
+      //tet.setState(false);
+      fillArray();
+      checkRows();
+      newTet();
     }
   }
 }
@@ -128,38 +99,41 @@ function blinkRow(row)
   scene.add(line);
   update();
   //clearTimeout(timeoutadd);
-						
+                        
   timeoutremove= setTimeout(
       function()
       {
         scene.remove(line);
-        update();	
+        update();   
         
         clearTimeout(timeoutremove);
       }, 150);
-		
+        
   return;
 }
 
 
 function removeRow(row)
 {
+  console.log("Enter removeRow("+ row + ")");
   updatePunkte();
   
   //laesst unterste zu verschwindende Reihe rot blinken
   blinkRow(row);
   
-  for (var x = 0; x < 10; ++x) 
-  {
+  for (var x = 0; x < 10; ++x) {
+    console.log("scene.remove(field.fieldArray[" + row + "][" + x + "]);")
     scene.remove(field.fieldArray[row][x]);
   }
   
   remove(row);
+  console.log("Exit removeRow("+ row + ")");
 }
 
 
 function remove(row)
 {
+  console.log("Enter remove(" + row + ")");
   for (var x = row; x < 20; ++x) { // alle Zeilen über row 1 runterschieben
     for (var y = 0; y < 10; ++y) { // Zeile durchgehen
       if (x < 19) {
@@ -173,18 +147,26 @@ function remove(row)
         field.fieldArray[x][y] = 0;
       }
     }
-  }	
+  }
+  printField();
+  console.log("Exit remove(" + row + ")");
 }
 
 
 function fillArray()
 {
+  console.log("Enter fillArray()");
+  console.log("fill: \nfield.fieldArray[" + (tet.shape.getBlock1().position.y+10) + "][" + tet.shape.getBlock1().position.x + "]" +
+  		            "\nfield.fieldArray[" + (tet.shape.getBlock2().position.y+10) + "][" + tet.shape.getBlock2().position.x + "]" + 
+                    "\nfield.fieldArray[" + (tet.shape.getBlock3().position.y+10) + "][" + tet.shape.getBlock3().position.x + "]" +
+                    "\nfield.fieldArray[" + (tet.shape.getBlock4().position.y+10) + "][" + tet.shape.getBlock4().position.x + "]");
   field.fieldArray[tet.shape.getBlock1().position.y+10][tet.shape.getBlock1().position.x] = tet.shape.getBlock1();
   field.fieldArray[tet.shape.getBlock2().position.y+10][tet.shape.getBlock2().position.x] = tet.shape.getBlock2();
   field.fieldArray[tet.shape.getBlock3().position.y+10][tet.shape.getBlock3().position.x] = tet.shape.getBlock3();
   field.fieldArray[tet.shape.getBlock4().position.y+10][tet.shape.getBlock4().position.x] = tet.shape.getBlock4();
 
   printField();
+  console.log("Exit fillArray()");
 }
 
 

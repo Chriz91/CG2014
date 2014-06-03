@@ -20,13 +20,12 @@ function game()
 
 function newTet()
 {	
-	
-	tet = Object.create(tet2);
-	tet.shape.setX(-10);
-	tet.setState(true);
-	tet2 = new Tetrominoes();
-	tet2.shape.setX(10);
-	moveBlock();
+  tet = Object.create(tet2);
+  tet.shape.setX(-10);
+  tet.setState(true);
+  tet2 = new Tetrominoes();
+  tet2.shape.setX(10);
+  moveBlock();
 }
 
 
@@ -45,14 +44,12 @@ function updatePunkte()
 function updateLevel()
 {
   punkte = 0;
-  if(level <= 5)
-	  {
-  level +=1;
-  updateSchwierigkeit();
-	  }
+  if(level <= 5) {
+    level += 1;
+    updateSchwierigkeit();
+  }
   document.getElementById("punkte").value = punkte;
   document.getElementById("level").value = level;
-  
 }
 
 
@@ -67,7 +64,7 @@ function newGame()
   window.location.reload();
   punkte = 0;
   level = 1;
-  speedvalue= 1000;
+  speedvalue = 1000;
   document.getElementById("punkte").value = punkte;
   document.getElementById("level").value = level;
 }

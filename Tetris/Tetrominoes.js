@@ -291,8 +291,8 @@ var Tetrominoes = function()
     }
 	else {
 	  this.setState(false);
-	  fillArray();
-	  checkRows();
+	  //fillArray();
+	  //checkRows();
 	}  
   };
 
@@ -517,7 +517,8 @@ var Tetrominoes = function()
   
   function isPositionLegal(x1, y1, x2, y2, x3, y3, x4, y4)
   {
-    var isLegal = field.fieldArray[10+y1][x1] == 0 &&
+    var isLegal = y1>-10 && y2>-10 && y3>-10 && y4>-10 &&
+                  field.fieldArray[10+y1][x1] == 0 &&
                   field.fieldArray[10+y2][x2] == 0 &&
                   field.fieldArray[10+y3][x3] == 0 &&
                   field.fieldArray[10+y4][x4] == 0;

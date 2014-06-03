@@ -10,13 +10,14 @@ var field;
 
 function update()
 {
+  requestAnimationFrame(update);
   render();
 }
 
 
 function render()
 {
-  requestAnimationFrame(render);
+  //requestAnimationFrame(render);
   renderer.render(scene, camera);
  
 }

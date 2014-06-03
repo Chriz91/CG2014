@@ -13,7 +13,7 @@
 	</head>
 	<body onload="init()">
 	
-	<div style="background-color:#FFFFE0;">
+	<div style="background-color:#FFFFE0;width:100px;">
 		<h1 style="color:blue" >Tetris</h1>
 		<hr/>
 		<table cols="3">
@@ -27,16 +27,16 @@
 			<td style="color:blue"  colspan="3"><p>Linien</p><input type="text" id="linien" value=0  /></td>
 				</tr>
 			<tr>
-				<td><input id="btnNewGame" type="button" value="New Game" onclick="newGame()">
+				<td><button id="btnNewGame" type="button" value="New Game" onclick="newGame()">New Game</button>
 			</tr>
 			<tr>
-				<td><input id="Hardcore" type="button" value="Hardcore" onclick="setModeTrue()">
+				<td><button id="Hardcore" type="button" value="Hardcore" onclick="setModeTrue()">Hardcore</button>
 			</tr>
 			<tr>
-				<td><input id="Normal" type="button" value="Normal" onclick="setModeFalse()">
+				<td><button id="Normal" type="button" value="Normal" onclick="setModeFalse()">Normal</button>
 			</tr>
 			<tr>
-        <td><input id="PrintField" type="button" value="PrintField" onclick="printField()">
+        <td><button id="PrintField" type="button" value="PrintField" onclick="printField()">Print Field</button>
       </tr>
 		</table>
 		<hr/>

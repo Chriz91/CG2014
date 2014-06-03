@@ -163,8 +163,13 @@ var Shape = function()
     return this.number;
   };
 
-  //var material = new THREE.MeshBasicMaterial( {color: this.ColorArray[this.getNumber()], side: THREE.DoubleSide} ); 
-  var material = new THREE.MeshBasicMaterial({map: this.textures[this.getNumber()]});
+  if(Texture == false){
+  var material = new THREE.MeshBasicMaterial( {color: this.ColorArray[this.getNumber()], side: THREE.DoubleSide} ); 
+}
+  else if(Texture == true)
+	  {var material = new THREE.MeshBasicMaterial({map: this.textures[this.getNumber()]});
+	  }
+	  
   
   var block1 = new THREE.Mesh(CreateGeometry(),material);
   var block2 = new THREE.Mesh(CreateGeometry(),material);

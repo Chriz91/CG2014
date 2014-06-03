@@ -41,7 +41,7 @@ var TetrisLetters = function()
 	
 	this.T = new THREE.Mesh(mainT, material);
 	
-	this.T.position.x = -5;
+	this.T.position.x = -6;
 	this.T.position.y = 12;
 
 	scene.add(this.T);
@@ -73,7 +73,7 @@ var TetrisLetters = function()
 	THREE.GeometryUtils.merge(mainE, E[5]);
 	this.E = new THREE.Mesh(mainE, material);
 	
-	this.E.position.x = -1;
+	this.E.position.x = -2;
 	this.E.position.y = 12;
 	
 	scene.add(this.E);
@@ -101,7 +101,7 @@ var TetrisLetters = function()
 	
 	this.ST = new THREE.Mesh(mainST, material);
 	
-	this.ST.position.x = 5;
+	this.ST.position.x = 4;
 	this.ST.position.y = 12;
 
 	scene.add(this.ST);
@@ -148,7 +148,7 @@ var TetrisLetters = function()
 	THREE.GeometryUtils.merge(mainR, R[8]);
 	this.R = new THREE.Mesh(mainR, material);
 	
-	this.R.position.x = 9;
+	this.R.position.x = 8;
 	this.R.position.y = 12;
 	
 	scene.add(this.R);
@@ -166,7 +166,7 @@ var TetrisLetters = function()
 	
 	this.I = new THREE.Mesh(mainI, material);
 	
-	this.I.position.x = 14.5;
+	this.I.position.x = 13.5;
 	this.I.position.y = 12;
 	
 	scene.add(this.I);
@@ -191,7 +191,7 @@ var TetrisLetters = function()
 	
 	this.S = new THREE.Mesh(mainS, material);
 	
-	this.S.position.x = 17;
+	this.S.position.x = 16;
 	this.S.position.y = 12;
 	
 	scene.add(this.S);

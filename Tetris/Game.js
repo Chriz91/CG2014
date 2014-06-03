@@ -5,7 +5,25 @@ var boolgame;
 var speedvalue = 1000;
 var punkte = 0;
 var level = 1;
-var Tetr 
+var Tetr; 
+var Texture = false;
+
+function setTexture()
+{
+if(Texture == false)
+	{
+	Texture = true;
+	}
+else if(Texture == true)
+	{
+	Texture = false;
+	}
+}
+
+function getTexture()
+{
+return Texture;	
+}
 
 function game()
 {

@@ -57,7 +57,7 @@ function init() {
   light.position.z = 0;
 
   camera.position.x = 5;
-  camera.position.z = 30;
+  camera.position.z = 25;
 
   scene.add(light);
   renderer.setSize(window.innerWidth, window.innerHeight);

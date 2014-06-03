@@ -10,12 +10,6 @@ var field;
 
 function update()
 {
-	Tetr.T.rotation.y += 1*Math.PI/180;
-	Tetr.E.rotation.y -= 1*Math.PI/180;
-	Tetr.ST.rotation.y += 1*Math.PI/180;
-	Tetr.R.rotation.y -= 1*Math.PI/180;
-	Tetr.I.rotation.y += 1*Math.PI/180;
-	Tetr.S.rotation.y -= 1*Math.PI/180;
   requestAnimationFrame(update);
   render();
 }
@@ -43,7 +37,8 @@ function init() {
 
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
-  renderer = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer({ alpha: true });
+  renderer.setClearColor( 0xffffff, 1);
 
   light = new THREE.PointLight(0xffffff);
 
@@ -63,5 +58,7 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
+  rotateTetr();
+  
   update();
 }

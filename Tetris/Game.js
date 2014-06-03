@@ -5,29 +5,43 @@ var boolgame;
 var speedvalue = 1000;
 var punkte = 0;
 var level = 1;
+var lines = 0;
 var Tetr; 
 var Texture = false;
 
 function setTexture()
 {
-if(Texture == false)
-	{
-	Texture = true;
-	}
-else if(Texture == true)
-	{
-	Texture = false;
-	}
+  if (Texture == false) {
+  	Texture = true;
+  }
+  else if (Texture == true) {
+  	Texture = false;
+  }
 }
+
+var t;
+function rotateTetr()
+{
+  Tetr.T.rotation.y += 1*Math.PI/180;
+  Tetr.E.rotation.y -= 1*Math.PI/180;
+  Tetr.ST.rotation.y += 1*Math.PI/180;
+  Tetr.R.rotation.y -= 1*Math.PI/180;
+  Tetr.I.rotation.y += 1*Math.PI/180;
+  Tetr.S.rotation.y -= 1*Math.PI/180;
+  
+  t = setTimeout(function(){rotateTetr()}, speedvalue/100);
+}
+
 
 function getTexture()
 {
-return Texture;	
+  return Texture;	
 }
+
 
 function game()
 {
- Tetr= new TetrisLetters();
+  Tetr= new TetrisLetters();
   var boolblock;
   boolgame = true;
   tet = new Tetrominoes();
@@ -58,6 +72,8 @@ function updatePunkte()
     punkte += 10;
     document.getElementById("punkte").value = punkte;
   }
+  ++lines;
+  document.getElementById("linien").value = lines;
 }
 
 
@@ -84,6 +100,7 @@ function newGame()
   window.location.reload();
   punkte = 0;
   level = 1;
+  lines = 0;
   speedvalue = 1000;
   document.getElementById("punkte").value = punkte;
   document.getElementById("level").value = level;

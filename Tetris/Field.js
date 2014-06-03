@@ -19,7 +19,7 @@ var Field = function(spalten , zeilen) {
   }
 
   var gridline = new THREE.LineBasicMaterial({
-    color : 0xffffff
+    color : 0x000000
   });
 
   var gridsystem = new THREE.Line(grid, gridline, THREE.LinePieces);

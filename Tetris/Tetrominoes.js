@@ -78,7 +78,7 @@ var Shape = function()
   };
 	
   this.ColorArray = [
-                     0xf0fff0,
+                     0x00fff0,//0xf0fff0,
                      0xf00faa,
                      0xf0ff00,
                      0x00ff00,

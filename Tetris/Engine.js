@@ -5,8 +5,8 @@ var timeoutremove;
 var geometry = new THREE.CubeGeometry(10, 1, 1); 
 var material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
 var line = new THREE.Mesh(geometry,material);
-
-
+var yupCounter = 0;
+var ydownCounter = 15;
 document.onkeydown = function(evt)
 {
   debug("Enter document.onkeydown: keyCode " + evt.keyCode);
@@ -53,8 +53,9 @@ function moveBlock()
     endblock.position.z = 2;
     if (hardcore == true) {
       camera.rotation.z = 0;
+      camera.rotation.y = 0;
     }
-    
+    renderer.setClearColor( 0x000000, 1);
     scene.add(endblock);
     
     update();

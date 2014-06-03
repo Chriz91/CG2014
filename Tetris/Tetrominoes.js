@@ -141,6 +141,16 @@ var Shape = function()
                      ],	
                     ];
 	
+  this.textures = [
+                    THREE.ImageUtils.loadTexture('textures/tetrominoes/Muster01.jpg'),
+                    THREE.ImageUtils.loadTexture('textures/tetrominoes/schachbrett.jpg'),
+                    THREE.ImageUtils.loadTexture('textures/tetrominoes/tapete.jpg'),
+                    THREE.ImageUtils.loadTexture('textures/tetrominoes/goldbraun.jpg'),
+                    THREE.ImageUtils.loadTexture('textures/tetrominoes/klee-damast-muster.jpg'),
+                    THREE.ImageUtils.loadTexture('textures/tetrominoes/viktorianisches-damast-muster.jpg'),
+                    THREE.ImageUtils.loadTexture('textures/tetrominoes/blumenfliese-muster.jpg')
+                  ]
+  
   this.setNumber = function()
   {
     this.number = Math.floor((Math.random()*7));
@@ -153,20 +163,8 @@ var Shape = function()
     return this.number;
   };
 
-  // Textur laden:
-  var texture = THREE.ImageUtils.loadTexture('textures/Lighthouse.jpg');
-  /*var texture = THREE.ImageUtils.loadTexture('textures/Lighthouse.jpg', {}, function() {
-    renderer.render(scene);
-  });*/
-  
-  //var material = new THREE.MeshBasicMaterial({map: texture}),
-    
-  
-  var material = new THREE.MeshBasicMaterial( {color: this.ColorArray[this.getNumber()], side: THREE.DoubleSide} ); 
-
-  if(this.getNumber() == 0) {
-    material = new THREE.MeshBasicMaterial({map: texture});
-  }
+  //var material = new THREE.MeshBasicMaterial( {color: this.ColorArray[this.getNumber()], side: THREE.DoubleSide} ); 
+  var material = new THREE.MeshBasicMaterial({map: this.textures[this.getNumber()]});
   
   var block1 = new THREE.Mesh(CreateGeometry(),material);
   var block2 = new THREE.Mesh(CreateGeometry(),material);

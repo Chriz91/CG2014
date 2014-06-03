@@ -153,8 +153,21 @@ var Shape = function()
     return this.number;
   };
 
+  // Textur laden:
+  var texture = THREE.ImageUtils.loadTexture('textures/Lighthouse.jpg');
+  /*var texture = THREE.ImageUtils.loadTexture('textures/Lighthouse.jpg', {}, function() {
+    renderer.render(scene);
+  });*/
+  
+  //var material = new THREE.MeshBasicMaterial({map: texture}),
+    
+  
   var material = new THREE.MeshBasicMaterial( {color: this.ColorArray[this.getNumber()], side: THREE.DoubleSide} ); 
 
+  if(this.getNumber() == 0) {
+    material = new THREE.MeshBasicMaterial({map: texture});
+  }
+  
   var block1 = new THREE.Mesh(CreateGeometry(),material);
   var block2 = new THREE.Mesh(CreateGeometry(),material);
   var block3 = new THREE.Mesh(CreateGeometry(),material);
@@ -287,7 +300,8 @@ var Tetrominoes = function()
 
   this.changeY = function(y) {
     debug("Enter Tetrominoes.changeY(" + y + "), state = " + this.state);
-    if(field.fieldArray[10+this.shape.getBlock1().position.y-1][this.shape.getBlock1().position.x] == 0 &&
+    if(this.state &&
+       field.fieldArray[10+this.shape.getBlock1().position.y-1][this.shape.getBlock1().position.x] == 0 &&
        field.fieldArray[10+this.shape.getBlock2().position.y-1][this.shape.getBlock2().position.x] == 0 &&
        field.fieldArray[10+this.shape.getBlock3().position.y-1][this.shape.getBlock3().position.x] == 0 &&
        field.fieldArray[10+this.shape.getBlock4().position.y-1][this.shape.getBlock4().position.x] == 0)
@@ -305,30 +319,32 @@ var Tetrominoes = function()
   };
 
   this.rotate = function() {
-    switch(this.shape.getNumber()) {
-      case shapes.LINESHAPE:
-        rotateLineShape(this.shape);
-        break;
-      case shapes.SQUARESHAPE:
-        // do nothing
-        break;
-      case shapes.TSHAPE:
-        rotateTShape(this.shape);
-        break;
-      case shapes.ZSHAPE:
-        rotateZShape(this.shape);
-        break;
-      case shapes.SSHAPE:
-        rotateSShape(this.shape);
-        break;
-      case shapes.LSHAPE:
-        rotateLShape(this.shape);
-        break;
-      case shapes.MIRROREDLSHAPE:
-        rotateMirroredLShape(this.shape);
-        break;
-      default:
-        break;
+    if(this.state) {
+      switch(this.shape.getNumber()) {
+        case shapes.LINESHAPE:
+          rotateLineShape(this.shape);
+          break;
+        case shapes.SQUARESHAPE:
+          // do nothing
+          break;
+        case shapes.TSHAPE:
+          rotateTShape(this.shape);
+          break;
+        case shapes.ZSHAPE:
+          rotateZShape(this.shape);
+          break;
+        case shapes.SSHAPE:
+          rotateSShape(this.shape);
+          break;
+        case shapes.LSHAPE:
+          rotateLShape(this.shape);
+          break;
+        case shapes.MIRROREDLSHAPE:
+          rotateMirroredLShape(this.shape);
+          break;
+        default:
+          break;
+      }
     }
   };
 

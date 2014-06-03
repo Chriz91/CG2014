@@ -19,7 +19,8 @@ function game()
 
 
 function newTet()
-{	
+{
+  debug("Enter newTet()\n\n");
   tet = Object.create(tet2);
   tet.shape.setX(-10);
   tet.setState(true);

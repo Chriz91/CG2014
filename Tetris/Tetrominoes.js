@@ -263,37 +263,45 @@ var Tetrominoes = function()
   }
 
   this.changeX = function(x) {
-    if(x > 0 &&
+    debug("Enter Tetrominoes.changeX(" + x + "), state = " + this.state);
+    if(this.state && x > 0 &&
        field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x+1] == 0 && // i.A. muesste das +1 hinten wsl. +x sein; hier aber egal
        field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x+1] == 0 &&
        field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x+1] == 0 &&
        field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x+1] == 0)
     {
       this.shape.setX(x);
+      debug("changeX: x > 0");
     }
-    else if(x < 0 &&
+    else if(this.state && x < 0 &&
             field.fieldArray[10+this.shape.getBlock1().position.y][this.shape.getBlock1().position.x-1] == 0 &&
             field.fieldArray[10+this.shape.getBlock2().position.y][this.shape.getBlock2().position.x-1] == 0 &&
             field.fieldArray[10+this.shape.getBlock3().position.y][this.shape.getBlock3().position.x-1] == 0 &&
             field.fieldArray[10+this.shape.getBlock4().position.y][this.shape.getBlock4().position.x-1] == 0)
     {
       this.shape.setX(x);
+      debug("changeX: x < 0");
     }
+    debug("Exit Tetrominoes.changeX(" + x + ")");
   };
 
   this.changeY = function(y) {
+    debug("Enter Tetrominoes.changeY(" + y + "), state = " + this.state);
     if(field.fieldArray[10+this.shape.getBlock1().position.y-1][this.shape.getBlock1().position.x] == 0 &&
        field.fieldArray[10+this.shape.getBlock2().position.y-1][this.shape.getBlock2().position.x] == 0 &&
        field.fieldArray[10+this.shape.getBlock3().position.y-1][this.shape.getBlock3().position.x] == 0 &&
        field.fieldArray[10+this.shape.getBlock4().position.y-1][this.shape.getBlock4().position.x] == 0)
     {
       this.shape.setY(y);
+      debug("changeY: if");
     }
 	else {
 	  this.setState(false);
+	  debug("changeY: else");
 	  //fillArray();
 	  //checkRows();
-	}  
+	}
+    debug("Exit Tetrominoes.changeY(" + y + ")");
   };
 
   this.rotate = function() {

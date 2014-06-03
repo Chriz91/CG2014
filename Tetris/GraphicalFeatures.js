@@ -2,7 +2,7 @@
 
 var TetrisLetters = function()
 {
-	var material = new THREE.MeshBasicMaterial( {map: THREE.ImageUtils.loadTexture('textures/explosion.jpg'), side: THREE.DoubleSide} );
+	var material = new THREE.MeshBasicMaterial( {map: THREE.ImageUtils.loadTexture('textures/tetris.jpg'), side: THREE.DoubleSide} );
 	var mainT = new THREE.Geometry();
 	var mainE = new THREE.Geometry();
 	var mainST = new THREE.Geometry();

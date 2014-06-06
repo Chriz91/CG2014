@@ -196,6 +196,19 @@ var TetrisLetters = function()
 	
 	scene.add(this.S);
 	
+	  T.castShadow = true;
+	  T.receiveShadow = true;
+	  E.castShadow = true;
+	  E.receiveShadow = true;
+	  ST.castShadow = true;
+	  ST.receiveShadow = true;
+	  R.castShadow = true;
+	  R.receiveShadow = true;
+	  I.castShadow = true;
+	  I.receiveShadow = true;
+	  S.castShadow = true;
+	  S.receiveShadow = true;
+	
 //	var tetris = new THREE.Geometry();;
 //	THREE.GeometryUtils.merge(tetris, T);
 //	THREE.GeometryUtils.merge(tetris, E);

@@ -60,6 +60,10 @@ function newTet()
   tet2 = new Tetrominoes();
   tet2.shape.setX(10);
   moveBlock();
+  tet.castShadow = true;
+  tet.receiveShadow = true;
+  tet2.castShadow = true;
+  tet2.receiveShadow = true;
 }
 
 
@@ -104,4 +108,5 @@ function newGame()
   speedvalue = 1000;
   document.getElementById("punkte").value = punkte;
   document.getElementById("level").value = level;
+  document.getElementById("linien").value = lines;
 }

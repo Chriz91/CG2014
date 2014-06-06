@@ -38,18 +38,18 @@ function init() {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
   renderer = new THREE.WebGLRenderer({ alpha: true });
-  renderer.setClearColor( 0xffffff, 1);
+  renderer.setClearColor( 0xeeeeee, 1);
+  renderer.shadowMapEnabled = true;
+  renderer.shadowMapSoft = true;
 
-  light = new THREE.PointLight(0xffffff);
+  light = new THREE.DirectionalLight(0xffffff, 0.5);
 
   // Graph erzeugen
   field = new Field(10, 20);
 
   game();
   
-  light.position.x = 5;
-  light.position.y = 5;
-  light.position.z = 0;
+  light.position.set(20,15,-3);
 
   camera.position.x = 5;
   camera.position.y = 5
